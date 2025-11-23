@@ -5,7 +5,7 @@
 Serpent's Trial is a Greek mythology-inspired puzzle game. As Medusa's descendant, petrify enemies into movable statues within Athena’s temple.
 Use lasers, mirrors, and strategic thinking to solve puzzles across 12 challenging designed levels.
 
-Serpent's Trial was developed as a student project at the [S4G School for Games] between January and March 2025.
+Serpent's Trial was developed as a student project at the [S4G School for Games](https://www.school4games.net/) between January and March 2025.
 Play it on [Itch.io!](https://s4g.itch.io/serpents-trial)
 
 ## Responsibilities
