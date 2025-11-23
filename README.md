@@ -1,3 +1,6 @@
+<img width="347" height="195" alt="kLNxfO" src="https://github.com/user-attachments/assets/9494d05c-817c-4174-beec-11b10a5dbe9a" />
+
+
 # Serpent-s-Trial---First-semester-project
 Serpent's Trial is a Greek mythology-inspired puzzle game. As Medusa's descendant, petrify enemies into movable statues within Athena’s temple.
 Use lasers, mirrors, and strategic thinking to solve puzzles across 12 challenging designed levels.
