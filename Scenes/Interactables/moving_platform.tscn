@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh00rvhsuq03g"]
+
+[ext_resource type="Script" uid="uid://c4fsoc8v4koej" path="res://Scripts/Interactables/moving_platform.gd" id="1_cd6t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toiks"]
+size = Vector2(369, 53)
+
+[node name="Moving_platform" type="AnimatableBody2D"]
+collision_mask = 0
+script = ExtResource("1_cd6t4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_toiks")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -184.0
+offset_top = -27.0
+offset_right = -3.0
+offset_bottom = 17.0
+scale = Vector2(2.04, 1.2)
+color = Color(0.780392, 0, 0.756863, 1)

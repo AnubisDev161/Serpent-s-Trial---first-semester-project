@@ -1,0 +1,159 @@
+[gd_scene load_steps=17 format=3 uid="uid://c8ndfrbkpdi22"]
+
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="1_2b1fb"]
+[ext_resource type="Script" uid="uid://dfc82alshbhak" path="res://Scripts/UI/Menus/credits.gd" id="1_cikci"]
+[ext_resource type="Texture2D" uid="uid://c55lpnc8oyrx0" path="res://Assets/Sprites/Background/parallax_background_relief_v6.3.png" id="2_2q30y"]
+[ext_resource type="Texture2D" uid="uid://n8eiu7h0165d" path="res://Assets/Sprites/Background/parallax_background_pillars1_v2.4.3.png" id="3_nk5dp"]
+[ext_resource type="Texture2D" uid="uid://c4hbwyp6rfdnd" path="res://Assets/Sprites/Background/parallax_foreground_bottom_v5.png" id="4_mrm6u"]
+[ext_resource type="Texture2D" uid="uid://bccur2f2fonyw" path="res://Assets/Sprites/Background/deco_foreground_vines_p2_v1.png" id="6_h2x3s"]
+[ext_resource type="Shader" uid="uid://sip0qjm0fnf7" path="res://Scenes/Artists Test Scenes/Parallax.tres" id="6_srup8"]
+[ext_resource type="Texture2D" uid="uid://bv2qlalwmf8ub" path="res://Assets/Sprites/Background/parallax_foreground_top_v3.png" id="7_vdn8y"]
+[ext_resource type="Texture2D" uid="uid://cdn5gf2hfjbtk" path="res://Assets/Sprites/Background/deco_foreground_vines_p1_v1.png" id="8_658au"]
+[ext_resource type="Theme" uid="uid://t8m20x0yt8ss" path="res://Assets/Others/button_style.tres" id="9_2q4ik"]
+[ext_resource type="PackedScene" uid="uid://dwh3aj20rmybu" path="res://Scenes/Artists Test Scenes/fireflyParticles.tscn" id="9_sukth"]
+[ext_resource type="Texture2D" uid="uid://6a5s7u6qcdnc" path="res://Assets/Sprites/UI/main_menu/UI_selector_polished.png" id="11_ihu1o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p003d"]
+shader = ExtResource("6_srup8")
+shader_parameter/Wind_Strenght = 11.416
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gs8f"]
+texture = ExtResource("11_ihu1o")
+expand_margin_left = 50.0
+expand_margin_right = 50.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5wva6"]
+texture = ExtResource("11_ihu1o")
+expand_margin_left = 50.0
+expand_margin_right = 50.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hyynl"]
+font = ExtResource("1_2b1fb")
+font_size = 51
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cikci")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="parallax_foreground_relief" type="Sprite2D" parent="Background"]
+z_index = -1
+texture = ExtResource("2_2q30y")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Background"]
+z_index = -1
+texture = ExtResource("3_nk5dp")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_foreground_bottom" type="Sprite2D" parent="Background"]
+z_index = 1
+texture = ExtResource("4_mrm6u")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines2" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_p003d")
+position = Vector2(0, 125)
+texture = ExtResource("6_h2x3s")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_foreground_top" type="Sprite2D" parent="Background"]
+texture = ExtResource("7_vdn8y")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines1" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_p003d")
+texture = ExtResource("8_658au")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 526.0
+offset_right = 87.0
+offset_bottom = 636.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back_Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_2q4ik")
+theme_override_fonts/font = ExtResource("1_2b1fb")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxTexture_8gs8f")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5wva6")
+text = "BACK"
+
+[node name="fireflyParticles" parent="." instance=ExtResource("9_sukth")]
+position = Vector2(1256, 727)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 449.0
+offset_right = 1795.0
+offset_bottom = 2690.0
+text = "# Credits
+
+Thank you for playing!
+
+a game by
+
+team2
+
+and
+
+School4Games
+
+Credits:
+
+Animations by
+Jessica Strey
+
+Level Design by
+Erik Vogler
+
+Environment by
+Franziska Weckert
+
+UI/UX and VFX by
+Christina Roß
+
+Sound & Music by
+Nico Holtkamp
+Stanislaw Preller
+
+Engineering by
+Stanislaw Preller
+Kester Karpf
+
+Production by
+Yunus Krüger
+
+Sponsored by Raidshadow legends
+"
+label_settings = SubResource("LabelSettings_hyynl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_exited" from="HBoxContainer/Back_Button" to="." method="_on_back_button_focus_exited"]
+[connection signal="pressed" from="HBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]

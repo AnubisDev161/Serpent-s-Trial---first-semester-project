@@ -1,0 +1,332 @@
+[gd_scene load_steps=22 format=3 uid="uid://cth1jk8eiutsc"]
+
+[ext_resource type="Script" uid="uid://drvoimbv5128r" path="res://Scripts/UI/Menus/menu.gd" id="1_5dq0k"]
+[ext_resource type="Texture2D" uid="uid://c55lpnc8oyrx0" path="res://Assets/Sprites/Background/parallax_background_relief_v6.3.png" id="2_88p21"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="2_q7td0"]
+[ext_resource type="Texture2D" uid="uid://n8eiu7h0165d" path="res://Assets/Sprites/Background/parallax_background_pillars1_v2.4.3.png" id="3_hvkhc"]
+[ext_resource type="Script" uid="uid://dd8m82a5be7w5" path="res://Scripts/UI/Menus/logo_text_anim.gd" id="4_mfrbj"]
+[ext_resource type="Texture2D" uid="uid://c4hbwyp6rfdnd" path="res://Assets/Sprites/Background/parallax_foreground_bottom_v5.png" id="4_ukg78"]
+[ext_resource type="Texture2D" uid="uid://bccur2f2fonyw" path="res://Assets/Sprites/Background/deco_foreground_vines_p2_v1.png" id="6_bnhy6"]
+[ext_resource type="Shader" uid="uid://sip0qjm0fnf7" path="res://Scenes/Artists Test Scenes/Parallax.tres" id="6_duykt"]
+[ext_resource type="Texture2D" uid="uid://bv2qlalwmf8ub" path="res://Assets/Sprites/Background/parallax_foreground_top_v3.png" id="7_gbl5g"]
+[ext_resource type="Texture2D" uid="uid://cdn5gf2hfjbtk" path="res://Assets/Sprites/Background/deco_foreground_vines_p1_v1.png" id="8_2sxa2"]
+[ext_resource type="Texture2D" uid="uid://cxqmbyfopclhl" path="res://Assets/Sprites/UI/main_menu/UI_title_glow.png" id="9_0ptik"]
+[ext_resource type="Theme" uid="uid://t8m20x0yt8ss" path="res://Assets/Others/button_style.tres" id="9_akpy6"]
+[ext_resource type="Texture2D" uid="uid://drqmscscji1ev" path="res://Assets/Sprites/UI/main_menu/UI_snake_borderV2.png" id="10_8q242"]
+[ext_resource type="PackedScene" uid="uid://dwh3aj20rmybu" path="res://Scenes/Artists Test Scenes/fireflyParticles.tscn" id="10_d48lx"]
+[ext_resource type="Texture2D" uid="uid://6a5s7u6qcdnc" path="res://Assets/Sprites/UI/main_menu/UI_selector_polished.png" id="11_xjnyi"]
+[ext_resource type="StyleBox" uid="uid://reb2767wns1u" path="res://Assets/Others/selector.tres" id="12_exv8i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhxce"]
+shader = ExtResource("6_duykt")
+shader_parameter/Wind_Strenght = 50.0
+
+[sub_resource type="Animation" id="Animation_cejpd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(155, 345)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(155, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(360, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_j4x4s"]
+resource_name = "new_text_float"
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(155, -0.25, 0, 0.25, 0, 155, -0.25, 0, 0.25, 0, 155, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(360, -0.25, 0, 0.25, 0, 320.985, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_gx2w2"]
+resource_name = "text_float"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.03333, 6.03333, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(155, 360), Vector2(155, 345), Vector2(155, 330), Vector2(155, 345), Vector2(155, 360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuo3j"]
+_data = {
+&"RESET": SubResource("Animation_cejpd"),
+&"new_text_float": SubResource("Animation_j4x4s"),
+&"text_float": SubResource("Animation_gx2w2")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5dq0k")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="parallax_foreground_relief" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(-350, 0)
+texture = ExtResource("2_88p21")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Background"]
+z_index = -1
+texture = ExtResource("3_hvkhc")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_foreground_bottom" type="Sprite2D" parent="Background"]
+z_index = 1
+texture = ExtResource("4_ukg78")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines2" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_yhxce")
+position = Vector2(0, 125)
+texture = ExtResource("6_bnhy6")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_foreground_top" type="Sprite2D" parent="Background"]
+texture = ExtResource("7_gbl5g")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines1" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_yhxce")
+texture = ExtResource("8_2sxa2")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 207.0
+offset_top = 32.0
+offset_right = 507.0
+offset_bottom = 454.0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("9_akpy6")
+theme_override_constants/separation = 50
+
+[node name="Resume_Button" type="Button" parent="Buttons"]
+visible = false
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_akpy6")
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("12_exv8i")
+theme_override_styles/hover = ExtResource("12_exv8i")
+text = "Resume
+"
+
+[node name="New_Game_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_akpy6")
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("12_exv8i")
+theme_override_styles/hover = ExtResource("12_exv8i")
+text = "new game
+"
+
+[node name="Levels_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_akpy6")
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("12_exv8i")
+theme_override_styles/hover = ExtResource("12_exv8i")
+text = "levels"
+
+[node name="Settings_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_akpy6")
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("12_exv8i")
+theme_override_styles/hover = ExtResource("12_exv8i")
+text = "Settings
+"
+
+[node name="Credits_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_akpy6")
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("12_exv8i")
+theme_override_styles/hover = ExtResource("12_exv8i")
+text = "Credits
+"
+
+[node name="Quit_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_akpy6")
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("12_exv8i")
+theme_override_styles/hover = ExtResource("12_exv8i")
+text = "Quit
+"
+
+[node name="Selector" type="Sprite2D" parent="Buttons"]
+visible = false
+z_index = 3
+position = Vector2(149, 33)
+texture = ExtResource("11_xjnyi")
+
+[node name="Logo_Text" type="VBoxContainer" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.5
+anchor_right = 0.07
+anchor_bottom = 0.5
+offset_left = 1.40001
+offset_top = -360.0
+offset_right = 634.8
+offset_bottom = -237.0
+grow_vertical = 2
+
+[node name="Logo_Text_Lable" type="Label" parent="Logo_Text"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.384314)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 9
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 100
+text = "SERPENTS TRIAL"
+vertical_alignment = 1
+
+[node name="title" type="Sprite2D" parent="Logo_Text"]
+texture_filter = 4
+position = Vector2(202, 12)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("9_0ptik")
+
+[node name="snake_border" type="Sprite2D" parent="Logo_Text"]
+texture_filter = 4
+position = Vector2(202, 12)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("10_8q242")
+
+[node name="fireflyParticles" parent="." instance=ExtResource("10_d48lx")]
+z_index = 1
+position = Vector2(1274, 762)
+scale = Vector2(1.67779, 1.67779)
+
+[node name="Logo_Text_Anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Logo_Text")
+libraries = {
+"": SubResource("AnimationLibrary_tuo3j")
+}
+autoplay = "new_text_float"
+speed_scale = 0.2
+script = ExtResource("4_mfrbj")
+
+[connection signal="pressed" from="Buttons/Resume_Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Buttons/New_Game_Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Buttons/Levels_Button" to="." method="_on_levels_button_pressed"]
+[connection signal="pressed" from="Buttons/Settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Buttons/Credits_Button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/Quit_Button" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://chhmdry2nskhs"]
+
+[ext_resource type="Script" uid="uid://c7gupqwls4r3s" path="res://Scripts/Sound/Music_and_sound_manager.gd" id="1_eleyj"]
+[ext_resource type="AudioStream" uid="uid://538uw658ym5e" path="res://Assets/Sounds/Music/Game Soundtrack 1.mp3" id="2_vwuw7"]
+[ext_resource type="AudioStream" uid="uid://dulixjubcd7g" path="res://Assets/Sounds/SFX/Death Sound.mp3" id="3_0m6wl"]
+
+[sub_resource type="Animation" id="Animation_6xlhv"]
+resource_name = "Fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music_stream_player:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 2.19098),
+"update": 0,
+"values": [0.0, -48.286]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX_stream_player:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 2.19098),
+"update": 0,
+"values": [0.0, -48.286]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX_stream_player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2i71g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music_stream_player:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX_stream_player:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_am0g8"]
+_data = {
+&"Fade_out": SubResource("Animation_6xlhv"),
+&"RESET": SubResource("Animation_2i71g")
+}
+
+[node name="Music_and_sound_manager" type="Node"]
+script = ExtResource("1_eleyj")
+
+[node name="Music_stream_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vwuw7")
+bus = &"Music"
+
+[node name="Music_and_SFX_animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_am0g8")
+}
+
+[node name="SFX_stream_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0m6wl")
+bus = &"SFX"
+
+[connection signal="animation_finished" from="Music_and_SFX_animation_player" to="." method="_on_animation_player_animation_finished"]

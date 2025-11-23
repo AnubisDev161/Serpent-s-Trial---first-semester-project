@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcjtt0mc5ilxf"]
+
+[ext_resource type="Texture2D" uid="uid://bgvm1uaw0awal" path="res://Assets/Sprites/Background/B1.1 darker.png" id="1_rjhh8"]
+[ext_resource type="Shader" uid="uid://sip0qjm0fnf7" path="res://Scenes/Artists Test Scenes/Parallax.tres" id="3_ke5gv"]
+[ext_resource type="Texture2D" uid="uid://bcm2tl17mrmin" path="res://Assets/Sprites/Background/deco_foreground_vines_v1.png" id="4_0sibo"]
+
+[sub_resource type="Resource" id="Resource_k3d4x"]
+metadata/__load_path__ = "res://Assets/Sprites/Background/parallax_foreground_top_v2.png"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0o1n"]
+shader = ExtResource("3_ke5gv")
+shader_parameter/Wind_Strenght = 11.416
+
+[node name="Parallax_Node_Test" type="Node2D"]
+
+[node name="Background2" type="ParallaxBackground" parent="."]
+layer = -1
+
+[node name="ParallaxL" type="ParallaxLayer" parent="Background2"]
+motion_scale = Vector2(0.3, 1)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Background2/ParallaxL"]
+position = Vector2(1280, 720)
+texture = ExtResource("1_rjhh8")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="Foreground2" type="ParallaxBackground" parent="."]
+layer = 2
+
+[node name="ParallaxL" type="ParallaxLayer" parent="Foreground2"]
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Foreground2/ParallaxL"]
+position = Vector2(1280, 595)
+texture = SubResource("Resource_k3d4x")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="Foreground" type="ParallaxBackground" parent="."]
+layer = 2
+
+[node name="Forgeground" type="ParallaxLayer" parent="Foreground"]
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Foreground/Forgeground"]
+z_index = 2
+material = SubResource("ShaderMaterial_r0o1n")
+texture = ExtResource("4_0sibo")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)

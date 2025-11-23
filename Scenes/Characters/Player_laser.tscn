@@ -1,0 +1,383 @@
+[gd_scene load_steps=17 format=3 uid="uid://ev54brnvpq8o"]
+
+[ext_resource type="Script" uid="uid://dugb4wnq2nx1o" path="res://Scripts/Character/Player/Player_laser.gd" id="1_4n8b0"]
+[ext_resource type="Texture2D" uid="uid://g0ngu2t8ryh0" path="res://Assets/Sprites/VFX/texture_vfx_laser_dotted_line_v2.png" id="2_evy5o"]
+[ext_resource type="Texture2D" uid="uid://dhyhw6npft145" path="res://Assets/Sprites/VFX/glowing_cirlce.png" id="3_uaa6d"]
+
+[sub_resource type="Curve" id="Curve_ufybf"]
+_data = [Vector2(0, 6.15385), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.571429), 0.0, 0.0, 0, 0, Vector2(1, 0.043956), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_lewcw"]
+_data = [Vector2(0.0933333, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_n105q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_bcy4b"]
+curve_x = SubResource("Curve_ufybf")
+curve_y = SubResource("Curve_lewcw")
+curve_z = SubResource("Curve_n105q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lbf1q"]
+lifetime_randomness = 0.13
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.25
+scale_curve = SubResource("CurveXYZTexture_bcy4b")
+
+[sub_resource type="Animation" id="Animation_70g6d"]
+resource_name = "Idle_laser"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:current_length")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3000]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D:default_color:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.266667, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Casting_particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spark_particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xf2pa"]
+resource_name = "Laser_build_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:current_length")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:laser_default_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6t84q"]
+resource_name = "Laser_shoot"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_time_over"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:current_length")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3000]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Line2D:default_color:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0666667)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spark_particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Casting_particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7gau7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:current_length")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:laser_default_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 1, 1)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Line2D:default_color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spark_particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Casting_particles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_61qsg"]
+_data = {
+&"Idle_laser": SubResource("Animation_70g6d"),
+&"Laser_build_up": SubResource("Animation_xf2pa"),
+&"Laser_shoot": SubResource("Animation_6t84q"),
+&"RESET": SubResource("Animation_7gau7")
+}
+
+[sub_resource type="Environment" id="Environment_8wl0o"]
+background_mode = 3
+ambient_light_source = 2
+glow_enabled = true
+glow_levels/2 = 11.85
+glow_levels/3 = 1.08
+glow_levels/4 = 0.9
+glow_levels/5 = 0.0
+glow_intensity = 1.41
+glow_strength = 1.31
+glow_blend_mode = 0
+glow_hdr_threshold = 1.35
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wyjws"]
+particle_flag_disable_z = true
+initial_velocity_max = 83.44
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_min = 0.02
+scale_max = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_261s5"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 28.467
+initial_velocity_min = 23.69
+initial_velocity_max = 23.69
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_min = 0.1
+scale_max = 0.1
+
+[node name="Player_laser" type="Node2D"]
+script = ExtResource("1_4n8b0")
+max_length = 3000
+start_length = 10
+laser_aime_color = Color(0.996342, 0.704112, 1, 1)
+laser_detected_color = Color(16.216, 11.892, 13.513, 1)
+laser_hit_color = Color(4.81569, 3.05882, 3.6, 1)
+mouse_speed = 10
+particles_amount_per_100px = 5
+acceleration = 20
+
+[node name="Laser" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(-140, -111, 1257, -181)
+width = 18.0
+default_color = Color(58.379, 11.892, 1, 1)
+texture = ExtResource("2_evy5o")
+texture_mode = 1
+
+[node name="End_particles" type="GPUParticles2D" parent="."]
+rotation = -1.5708
+emitting = false
+amount = 10
+texture = ExtResource("3_uaa6d")
+lifetime = 0.15
+one_shot = true
+speed_scale = 0.4
+process_material = SubResource("ParticleProcessMaterial_lbf1q")
+
+[node name="End_particles_old" type="CPUParticles2D" parent="."]
+visible = false
+rotation = -1.5708
+emitting = false
+lifetime = 0.2
+one_shot = true
+gravity = Vector2(0, 0)
+initial_velocity_min = 68.79
+initial_velocity_max = 249.35
+scale_amount_min = 11.75
+scale_amount_max = 11.75
+color = Color(0.803917, 0.333291, 0.641862, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_61qsg")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8wl0o")
+
+[node name="Casting_particles" type="GPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("3_uaa6d")
+lifetime = 0.3
+trail_lifetime = 4.05
+process_material = SubResource("ParticleProcessMaterial_wyjws")
+
+[node name="Spark_particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+texture = ExtResource("3_uaa6d")
+lifetime = 0.3
+trail_lifetime = 4.05
+process_material = SubResource("ParticleProcessMaterial_261s5")

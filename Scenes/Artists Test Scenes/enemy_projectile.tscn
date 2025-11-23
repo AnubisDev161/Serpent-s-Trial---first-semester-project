@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvalhopurenov"]
+
+[ext_resource type="Texture2D" uid="uid://btuluw437t653" path="res://Assets/Sprites/VFX/enemy_projectile_particle.png" id="1_rn7qs"]
+[ext_resource type="Texture2D" uid="uid://esa7svo52jrn" path="res://Assets/Sprites/projectileV2.png" id="2_8lpbw"]
+
+[sub_resource type="Curve" id="Curve_hox88"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_g20yt"]
+offsets = PackedFloat32Array(0, 0.45045, 1)
+colors = PackedColorArray(0.996078, 0.984314, 0.898039, 1, 1, 0.952941, 0.313726, 0.8, 1, 0.952941, 0.290196, 0.741176)
+
+[sub_resource type="Gradient" id="Gradient_aqwmb"]
+offsets = PackedFloat32Array(0, 0.319588, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.984314, 0.917647, 0.498039, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5nrke"]
+gradient = SubResource("Gradient_aqwmb")
+
+[sub_resource type="Curve" id="Curve_2teyg"]
+_data = [Vector2(0.00900901, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h0hw4"]
+curve = SubResource("Curve_2teyg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a6hog"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 0.4
+initial_velocity_max = 250.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_h0hw4")
+color_ramp = SubResource("GradientTexture1D_5nrke")
+
+[node name="projectile" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(575, 295)
+rotation = -0.0271376
+scale = Vector2(0.434903, -0.375399)
+texture = ExtResource("2_8lpbw")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(574, 295)
+scale = Vector2(2.6, 1.12)
+amount = 100
+preprocess = 0.1
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.0
+scale_amount_max = 2.3
+scale_amount_curve = SubResource("Curve_hox88")
+color_ramp = SubResource("Gradient_g20yt")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(559, 295)
+rotation = 1.56758
+scale = Vector2(0.400002, -0.440001)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_a6hog")
+texture = ExtResource("1_rn7qs")
+explosiveness = 0.1

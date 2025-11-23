@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpgpusjnxfg06"]
+
+[ext_resource type="Script" uid="uid://c5865nb27x8qf" path="res://Scripts/Interactables/statue_laser.gd" id="1_letrv"]
+
+[node name="Basic_laser" type="Node2D"]
+script = ExtResource("1_letrv")
+
+[node name="Laser" type="RayCast2D" parent="."]
+self_modulate = Color(1, 0.172549, 1, 1)
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(1, 0.32549, 1, 1)
+
+[node name="End" type="CPUParticles2D" parent="."]
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector2(0, 0)
+scale_amount_min = 11.75
+scale_amount_max = 11.75
+color = Color(1, 0, 0, 1)

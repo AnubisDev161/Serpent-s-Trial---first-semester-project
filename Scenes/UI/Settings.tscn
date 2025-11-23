@@ -1,0 +1,209 @@
+[gd_scene load_steps=24 format=3 uid="uid://coyu1pb2jw6e0"]
+
+[ext_resource type="Script" uid="uid://bsybdftqqh1t8" path="res://Scripts/UI/Menus/settings.gd" id="1_xap2p"]
+[ext_resource type="Texture2D" uid="uid://c55lpnc8oyrx0" path="res://Assets/Sprites/Background/parallax_background_relief_v6.3.png" id="2_ytubb"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="3_kwgw8"]
+[ext_resource type="Texture2D" uid="uid://n8eiu7h0165d" path="res://Assets/Sprites/Background/parallax_background_pillars1_v2.4.3.png" id="3_qy4um"]
+[ext_resource type="Texture2D" uid="uid://bccur2f2fonyw" path="res://Assets/Sprites/Background/deco_foreground_vines_p2_v1.png" id="5_qr17s"]
+[ext_resource type="Texture2D" uid="uid://c4hbwyp6rfdnd" path="res://Assets/Sprites/Background/parallax_foreground_bottom_v5.png" id="6_8uqth"]
+[ext_resource type="Texture2D" uid="uid://cdn5gf2hfjbtk" path="res://Assets/Sprites/Background/deco_foreground_vines_p1_v1.png" id="7_8gx6o"]
+[ext_resource type="Shader" uid="uid://sip0qjm0fnf7" path="res://Scenes/Artists Test Scenes/Parallax.tres" id="8_11y6n"]
+[ext_resource type="Texture2D" uid="uid://bv2qlalwmf8ub" path="res://Assets/Sprites/Background/parallax_foreground_top_v3.png" id="8_y5u1h"]
+[ext_resource type="Theme" uid="uid://t8m20x0yt8ss" path="res://Assets/Others/button_style.tres" id="9_aoo4p"]
+[ext_resource type="AudioStream" uid="uid://bvqdq5df3rwk7" path="res://Assets/Sounds/SFX/dripping-water-stereo-sound-257182.mp3" id="9_hiuef"]
+[ext_resource type="PackedScene" uid="uid://dwh3aj20rmybu" path="res://Scenes/Artists Test Scenes/fireflyParticles.tscn" id="10_1ud0r"]
+[ext_resource type="Texture2D" uid="uid://cmw5otv1lij5" path="res://Assets/Sprites/VFX/texture_vfx_laser_dotted_line_v1.png" id="10_4wtpv"]
+[ext_resource type="Texture2D" uid="uid://6a5s7u6qcdnc" path="res://Assets/Sprites/UI/main_menu/UI_selector_polished.png" id="11_iuxmg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ibns"]
+shader = ExtResource("8_11y6n")
+shader_parameter/Wind_Strenght = 50.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lymg2"]
+bg_color = Color(0.406609, 0.597218, 0.642081, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1upgd"]
+bg_color = Color(0.794421, 0.447549, 0.808231, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r8ff"]
+bg_color = Color(0.407843, 0.596078, 0.643137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es58t"]
+bg_color = Color(0.796078, 0.447059, 0.807843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ednss"]
+bg_color = Color(0.407843, 0.596078, 0.643137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s78tg"]
+bg_color = Color(0.796078, 0.447059, 0.807843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mu8bx"]
+texture = ExtResource("11_iuxmg")
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_woen1"]
+texture = ExtResource("11_iuxmg")
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 720)
+script = ExtResource("1_xap2p")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="parallax_foreground_relief" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 720)
+texture = ExtResource("2_ytubb")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 720)
+texture = ExtResource("3_qy4um")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines2" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_5ibns")
+texture = ExtResource("5_qr17s")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_bottom" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 1071)
+texture = ExtResource("6_8uqth")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines1" type="Sprite2D" parent="Background"]
+z_index = 2
+material = SubResource("ShaderMaterial_5ibns")
+texture = ExtResource("7_8gx6o")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_top" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 595)
+texture = ExtResource("8_y5u1h")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -180.5
+offset_right = 83.5
+offset_bottom = 180.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Volume_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kwgw8")
+theme_override_font_sizes/font_size = 55
+text = "Volume
+"
+
+[node name="Volume_Slider" type="HSlider" parent="HBoxContainer"]
+texture_filter = 4
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_4wtpv")
+theme_override_icons/grabber_highlight = ExtResource("10_4wtpv")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_lymg2")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1upgd")
+max_value = 1.0
+step = 0.05
+value = 0.3
+
+[node name="Sound_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kwgw8")
+theme_override_font_sizes/font_size = 55
+text = "Sound
+"
+
+[node name="Sound_Slider" type="HSlider" parent="HBoxContainer"]
+texture_filter = 4
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_4wtpv")
+theme_override_icons/grabber_highlight = ExtResource("10_4wtpv")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3r8ff")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_es58t")
+max_value = 1.0
+step = 0.05
+value = 0.3
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Music_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kwgw8")
+theme_override_font_sizes/font_size = 55
+text = "Music
+"
+
+[node name="Music_Slider" type="HSlider" parent="HBoxContainer"]
+texture_filter = 4
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_4wtpv")
+theme_override_icons/grabber_highlight = ExtResource("10_4wtpv")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ednss")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_s78tg")
+max_value = 1.0
+step = 0.05
+value = 0.2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Fullscreen_toggle" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kwgw8")
+theme_override_font_sizes/font_size = 40
+button_pressed = true
+text = "FULLSCREEN"
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Back_Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme = ExtResource("9_aoo4p")
+theme_override_fonts/font = ExtResource("3_kwgw8")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mu8bx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_woen1")
+text = "Back"
+
+[node name="SFX_example_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_hiuef")
+bus = &"SFX"
+
+[node name="fireflyParticles" parent="." instance=ExtResource("10_1ud0r")]
+position = Vector2(1273, 677)
+scale = Vector2(1.69423, 1.69423)
+
+[connection signal="value_changed" from="HBoxContainer/Volume_Slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Sound_Slider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Music_Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="toggled" from="HBoxContainer/Fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="pressed" from="HBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]

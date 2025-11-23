@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq7i6ecec36v6"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/opening.gd" id="1_iohli"]
+
+[node name="Opening" type="Path2D" node_paths=PackedStringArray("opening_cam")]
+process_mode = 3
+script = ExtResource("1_iohli")
+opening_cam = NodePath("PathFollow2D/Opening_Cam")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="Opening_Cam" type="Camera2D" parent="PathFollow2D"]
+enabled = false
+limit_top = 0
+limit_bottom = 1600

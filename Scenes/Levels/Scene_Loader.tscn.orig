@@ -1,0 +1,27 @@
+[gd_scene load_steps=12 format=3 uid="uid://5gf2euxsc0vx"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/scene_loader.gd" id="1_hepp8"]
+[ext_resource type="PackedScene" uid="uid://b1iaya3g1tqd7" path="res://Scenes/Levels/Playable/tutlvl1.tscn" id="2_2i2kv"]
+[ext_resource type="PackedScene" uid="uid://byurgw8fc8gou" path="res://Scenes/Levels/Playable/tutlvl2.tscn" id="3_ufgog"]
+[ext_resource type="PackedScene" uid="uid://b4g3l57fi7ucl" path="res://Scenes/Levels/Playable/level3.tscn" id="4_3w8al"]
+[ext_resource type="PackedScene" uid="uid://d4cjooq50oeb8" path="res://Scenes/Levels/Playable/level4.tscn" id="5_aij1t"]
+[ext_resource type="PackedScene" uid="uid://b4x7sql55qihw" path="res://Scenes/Levels/WIP/level5.tscn" id="6_4h7go"]
+[ext_resource type="PackedScene" uid="uid://bu5ha3idw3chw" path="res://Scenes/Levels/WIP/level6.tscn" id="7_ej3tm"]
+[ext_resource type="PackedScene" uid="uid://c34hknl60tg6" path="res://Scenes/Levels/WIP/level8.tscn" id="8_0bj73"]
+[ext_resource type="PackedScene" uid="uid://dvjtjct5wjc0d" path="res://Scenes/Levels/WIP/level_010.tscn" id="9_ec5jb"]
+[ext_resource type="PackedScene" uid="uid://d08ppev1ubty1" path="res://Scenes/Levels/WIP/level_011.tscn" id="10_qkunn"]
+<<<<<<< working copy
+[ext_resource type="AudioStream" uid="uid://btfc7ll8jlvek" path="res://Assets/Sounds/Music/Medusa Soundtrack Gameplay Track.mp3" id="11_lar7c"]
+=======
+[ext_resource type="AudioStream" uid="uid://hb54rql0t63v" path="res://Assets/Sounds/Music/Medusa Soundtrack Gameplay Track.mp3" id="11_lar7c"]
+>>>>>>> merge rev
+
+[node name="Scene_loader" type="Node"]
+process_mode = 1
+script = ExtResource("1_hepp8")
+Scenes = Array[PackedScene]([ExtResource("2_2i2kv"), ExtResource("3_ufgog"), ExtResource("4_3w8al"), ExtResource("5_aij1t"), ExtResource("6_4h7go"), ExtResource("7_ej3tm"), ExtResource("8_0bj73"), ExtResource("9_ec5jb"), ExtResource("10_qkunn")])
+
+[node name="Ingame_music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_lar7c")
+bus = &"Music"

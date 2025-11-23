@@ -1,0 +1,196 @@
+[gd_scene load_steps=25 format=3 uid="uid://bljsvpfi28jej"]
+
+[ext_resource type="Script" uid="uid://bdn1nsv1r0it5" path="res://Scripts/Interactables/reflector.gd" id="1_j4y2b"]
+[ext_resource type="Texture2D" uid="uid://djdsd2quanipg" path="res://Assets/Sprites/Interactables/asset_mirror_v3.4.png" id="8_ecu5i"]
+[ext_resource type="AudioStream" uid="uid://bnul4kx4vuwtq" path="res://Assets/Sounds/SFX/spigel-rotate.mp3" id="8_g6qka"]
+
+[sub_resource type="Animation" id="Animation_u1fmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wwpib"]
+resource_name = "reflection_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.233333, 0.333333, 0.433333, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_evwj8"]
+_data = {
+&"RESET": SubResource("Animation_u1fmq"),
+&"reflection_animation": SubResource("Animation_wwpib")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxbp2"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(0, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd5fl"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(80, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibv1a"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(160, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eieg7"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(240, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c1tc"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(320, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7bux"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(400, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r20c"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(480, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtrcp"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(560, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqbnk"]
+atlas = ExtResource("8_ecu5i")
+region = Rect2(640, 0, 80, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xtbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxbp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd5fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibv1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eieg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c1tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7bux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r20c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtrcp")
+}, {
+"duration": 20.0,
+"texture": SubResource("AtlasTexture_bqbnk")
+}],
+"loop": true,
+"name": &"new_animation_7",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x88b5"]
+a = Vector2(-2, -53)
+b = Vector2(-2, 51)
+
+[sub_resource type="Gradient" id="Gradient_00ay1"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c7e72"]
+gradient = SubResource("Gradient_00ay1")
+
+[sub_resource type="Gradient" id="Gradient_302mk"]
+colors = PackedColorArray(0.400698, 0.400698, 0.400698, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qubac"]
+gradient = SubResource("Gradient_302mk")
+
+[sub_resource type="Curve" id="Curve_xq1fy"]
+_limits = [0.99, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 116.484), 0.0, 0.0, 0, 0, Vector2(0.453202, 20), -66.9231, -66.9231, 0, 0, Vector2(0.46798, 15.3846), -39.0385, -39.0385, 0, 0, Vector2(0.586207, 10.6593), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_i1h5b"]
+curve = SubResource("Curve_xq1fy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dl2ui"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape_scale = Vector3(100, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -720.0
+angle_max = 692.9
+direction = Vector3(0, 0, 0)
+spread = 39.13
+flatness = 0.052
+angular_velocity_min = 100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 2.0
+linear_accel_curve = SubResource("CurveTexture_i1h5b")
+radial_accel_min = 7.89
+radial_accel_max = 46.48
+scale_min = 2.0
+scale_max = 6.0
+color_ramp = SubResource("GradientTexture1D_qubac")
+color_initial_ramp = SubResource("GradientTexture1D_c7e72")
+
+[node name="Reflector" type="StaticBody2D"]
+script = ExtResource("1_j4y2b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_evwj8")
+}
+autoplay = "reflection_animation"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-11, 0)
+sprite_frames = SubResource("SpriteFrames_3xtbw")
+animation = &"new_animation_7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-20, 2)
+shape = SubResource("SegmentShape2D_x88b5")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ParticleDust" type="GPUParticles2D" parent="Node"]
+z_index = 1
+position = Vector2(0, -90)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_dl2ui")
+lifetime = 1.5
+one_shot = true
+fixed_fps = 60
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_g6qka")

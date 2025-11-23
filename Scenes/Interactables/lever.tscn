@@ -1,0 +1,214 @@
+[gd_scene load_steps=14 format=3 uid="uid://de4atcpg61c8r"]
+
+[ext_resource type="Script" uid="uid://d1afx2b4yhjjg" path="res://Scripts/Interactables/lever.gd" id="1_2lemi"]
+[ext_resource type="Texture2D" uid="uid://bwufkwsxjj5o2" path="res://Assets/Sprites/Interactables/asset_handle_p1+p2_v3.png" id="2_dlk48"]
+[ext_resource type="AudioStream" uid="uid://b1wbf4g4xs0mt" path="res://Assets/Sounds/SFX/slide-click-92152.mp3" id="3_yehwh"]
+[ext_resource type="AudioStream" uid="uid://dusjtpv5jax1m" path="res://Assets/Sounds/SFX/clank1-91862.mp3" id="4_dlr81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv2gd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbb3w"]
+size = Vector2(101, 100)
+
+[sub_resource type="Animation" id="Animation_jhvso"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Owl_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7b7hh"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Owl_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pbjwu"]
+resource_name = "pulled"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Owl_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("AudioStreamPlayer2D2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrflx"]
+_data = {
+&"RESET": SubResource("Animation_jhvso"),
+&"default": SubResource("Animation_7b7hh"),
+&"pulled": SubResource("Animation_pbjwu")
+}
+
+[sub_resource type="Gradient" id="Gradient_rkopl"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c7e72"]
+gradient = SubResource("Gradient_rkopl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sphse"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -442.1
+angle_max = 145.3
+direction = Vector3(3, 0, 3)
+spread = 96.546
+flatness = 0.173
+gravity = Vector3(0, -100, 0)
+linear_accel_min = -28.95
+linear_accel_max = -15.79
+radial_accel_min = 7.89
+radial_accel_max = 46.48
+scale_min = 2.0
+scale_max = 4.0
+color_initial_ramp = SubResource("GradientTexture1D_c7e72")
+
+[node name="Lever" type="Area2D"]
+script = ExtResource("1_2lemi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lv2gd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wbb3w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xrflx")
+}
+
+[node name="Owl_sprite" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("2_dlk48")
+hframes = 2
+frame = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yehwh")
+volume_db = 14.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dlr81")
+bus = &"SFX"
+
+[node name="ParticleLeft" type="GPUParticles2D" parent="."]
+position = Vector2(5, -104)
+emitting = false
+amount = 5
+speed_scale = 0.5
+explosiveness = 0.07
+randomness = 0.13
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_sphse")
+
+[node name="ParticleRight" type="GPUParticles2D" parent="."]
+position = Vector2(20, -103)
+emitting = false
+amount = 5
+speed_scale = 0.5
+explosiveness = 0.07
+randomness = 0.13
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_sphse")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

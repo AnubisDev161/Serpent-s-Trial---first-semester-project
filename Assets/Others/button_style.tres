@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://t8m20x0yt8ss"]
+
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="1_j87u6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8m02h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ge7mo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mnoq2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj05l"]
+
+[resource]
+default_font = ExtResource("1_j87u6")
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_pressed_color = Color(1, 0.501961, 0.960784, 1)
+Button/font_sizes/font_size = 55
+Button/fonts/font = ExtResource("1_j87u6")
+Button/styles/focus = SubResource("StyleBoxEmpty_8m02h")
+Button/styles/hover = SubResource("StyleBoxEmpty_ge7mo")
+Button/styles/normal = SubResource("StyleBoxEmpty_mnoq2")
+Button/styles/pressed = SubResource("StyleBoxEmpty_lj05l")

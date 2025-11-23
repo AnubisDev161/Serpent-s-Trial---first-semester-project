@@ -1,0 +1,32 @@
+[gd_scene load_steps=15 format=3 uid="uid://5gf2euxsc0vx"]
+
+[ext_resource type="Script" uid="uid://jvrvifx4nrba" path="res://Scripts/Levels/scene_loader.gd" id="1_hepp8"]
+[ext_resource type="PackedScene" uid="uid://dl8hybbsxpofw" path="res://Scenes/Levels/WIP/level_01v2_TT.tscn" id="2_365nf"]
+[ext_resource type="PackedScene" uid="uid://b4g3l57fi7ucl" path="res://Scenes/Levels/Playable/Level_03.tscn" id="4_3w8al"]
+[ext_resource type="PackedScene" uid="uid://d4cjooq50oeb8" path="res://Scenes/Levels/Playable/Level_04.tscn" id="5_aij1t"]
+[ext_resource type="PackedScene" uid="uid://b4x7sql55qihw" path="res://Scenes/Levels/WIP/Level_05.tscn" id="6_4h7go"]
+[ext_resource type="PackedScene" uid="uid://bu5ha3idw3chw" path="res://Scenes/Levels/WIP/Level_06.tscn" id="7_ej3tm"]
+[ext_resource type="PackedScene" uid="uid://c34hknl60tg6" path="res://Scenes/Levels/WIP/Level_08.tscn" id="8_0bj73"]
+[ext_resource type="PackedScene" uid="uid://dd8nd52qtugx3" path="res://Scenes/Levels/WIP/Level_11v2.tscn" id="8_ijbnw"]
+[ext_resource type="PackedScene" uid="uid://dvjtjct5wjc0d" path="res://Scenes/Levels/WIP/Level_10.tscn" id="9_ec5jb"]
+[ext_resource type="PackedScene" uid="uid://d1a1hefkfcdt7" path="res://Scenes/Levels/WIP/Level_13.tscn" id="10_1moee"]
+[ext_resource type="PackedScene" uid="uid://bp3knrakl6qe" path="res://Scenes/Levels/WIP/level_014v3.tscn" id="10_8j8g5"]
+[ext_resource type="PackedScene" uid="uid://b7vpc535sjx3d" path="res://Scenes/Levels/WIP/Level_12v3.tscn" id="12_miv10"]
+[ext_resource type="PackedScene" uid="uid://dstxkboygsna5" path="res://Scenes/Levels/WIP/Level_15.tscn" id="13_a0je3"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="14_wy4q2"]
+
+[node name="Scene_loader" type="Node"]
+script = ExtResource("1_hepp8")
+Scenes = Array[PackedScene]([ExtResource("2_365nf"), ExtResource("4_3w8al"), ExtResource("5_aij1t"), ExtResource("6_4h7go"), ExtResource("9_ec5jb"), ExtResource("8_0bj73"), ExtResource("8_ijbnw"), ExtResource("13_a0je3"), ExtResource("10_1moee"), ExtResource("10_8j8g5"), ExtResource("7_ej3tm"), ExtResource("12_miv10")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Level_counter" type="Label" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 1357.0
+offset_right = 753.0
+offset_bottom = 1543.0
+theme_override_fonts/font = ExtResource("14_wy4q2")
+theme_override_font_sizes/font_size = 34
+text = "Level:"

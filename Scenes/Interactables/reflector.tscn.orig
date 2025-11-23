@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://bljsvpfi28jej"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/reflector.gd" id="1_j4y2b"]
+[ext_resource type="Texture2D" uid="uid://bc1disynawtm7" path="res://Assets/Sprites/Interactables/asset_mirror_v1.png" id="2_48bld"]
+<<<<<<< working copy
+[ext_resource type="Texture2D" uid="uid://blsihs0b2ot2b" path="res://Assets/Sprites/Interactables/asset_mirror_v3.2.png" id="3_86by0"]
+=======
+[ext_resource type="Texture2D" uid="uid://78otsbnmg0qq" path="res://Assets/Sprites/Interactables/asset_mirror_v3.2.png" id="3_86by0"]
+>>>>>>> merge rev
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x88b5"]
+a = Vector2(-2, -53)
+b = Vector2(-2, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0my35"]
+atlas = ExtResource("3_86by0")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6553"]
+atlas = ExtResource("3_86by0")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj1y4"]
+atlas = ExtResource("3_86by0")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm21i"]
+atlas = ExtResource("3_86by0")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ff2x"]
+atlas = ExtResource("3_86by0")
+region = Rect2(256, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e18vi"]
+atlas = ExtResource("3_86by0")
+region = Rect2(320, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvh0t"]
+atlas = ExtResource("3_86by0")
+region = Rect2(384, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o4v3"]
+atlas = ExtResource("3_86by0")
+region = Rect2(448, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukhpb"]
+atlas = ExtResource("3_86by0")
+region = Rect2(512, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xtbw"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0my35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6553")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj1y4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm21i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ff2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e18vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvh0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o4v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukhpb")
+}],
+"loop": true,
+"name": &"mirror_reflection",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_u1fmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wwpib"]
+resource_name = "reflection_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.233333, 0.333333, 0.433333, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_evwj8"]
+_data = {
+"RESET": SubResource("Animation_u1fmq"),
+"reflection_animation": SubResource("Animation_wwpib")
+}
+
+[node name="Reflector" type="StaticBody2D"]
+script = ExtResource("1_j4y2b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -10.0
+offset_top = -28.0
+offset_right = 10.0
+offset_bottom = -7.0
+scale = Vector2(1, 2.68)
+color = Color(1, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AssetMirrorV1" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_48bld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2)
+shape = SubResource("SegmentShape2D_x88b5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3xtbw")
+animation = &"mirror_reflection"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_evwj8")
+}
+autoplay = "reflection_animation"

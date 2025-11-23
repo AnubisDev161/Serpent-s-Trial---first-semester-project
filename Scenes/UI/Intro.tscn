@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://blmm8vvl8aqxa"]
+
+[ext_resource type="Texture2D" uid="uid://y7fuvb111582" path="res://Assets/Sprites/UI/S4G-logo.png" id="1_58kd4"]
+[ext_resource type="Script" uid="uid://bbr0y1nvxwbg3" path="res://Scripts/UI/intro.gd" id="1_dg1hf"]
+
+[sub_resource type="Animation" id="Animation_25w3a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gcceo"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k2sju"]
+resource_name = "fade_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvi6q"]
+_data = {
+&"RESET": SubResource("Animation_25w3a"),
+&"fade_in": SubResource("Animation_gcceo"),
+&"fade_out": SubResource("Animation_k2sju")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_dg1hf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 4
+position = Vector2(1280, -346.5)
+texture = ExtResource("1_58kd4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -81.0
+offset_top = -93.0
+offset_right = 2653.0
+offset_bottom = 1495.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -81.0
+offset_top = -93.0
+offset_right = 2653.0
+offset_bottom = 1495.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hvi6q")
+}

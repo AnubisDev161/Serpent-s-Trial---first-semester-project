@@ -1,0 +1,407 @@
+[gd_scene load_steps=22 format=3 uid="uid://bnl48568oqbtm"]
+
+[ext_resource type="Script" uid="uid://c5gdy8lhilg6v" path="res://Scripts/UI/Menus/tooltips.gd" id="1_dkjic"]
+[ext_resource type="Texture2D" uid="uid://dg2ofigpkk4tq" path="res://Assets/Sprites/UI/tooltips/UI_tooltip_window_polishedV3.2_no_glow.png" id="2_vqaul"]
+[ext_resource type="Texture2D" uid="uid://cwa1cujc48qql" path="res://Assets/Sprites/UI/tooltips/UI_tooltip_window_polishedV3.2.png" id="3_7p0f7"]
+[ext_resource type="Script" uid="uid://brctrpq8gdhea" path="res://Scripts/UI/TooltipStuff/tooltip_data.gd" id="4_qkbk2"]
+[ext_resource type="Texture2D" uid="uid://c0ryirki3557j" path="res://Assets/Sprites/UI/tooltips/Mouse/tooltip_controlsV2.png" id="5_jqs8a"]
+[ext_resource type="Texture2D" uid="uid://cqus4yotjaa28" path="res://Assets/Sprites/UI/tooltips/Mouse/tooltip_petrifying.png" id="5_yax8t"]
+[ext_resource type="Texture2D" uid="uid://s1ivdfw16qe0" path="res://Assets/Sprites/UI/tooltips/Mouse/tooltip_lever.png" id="7_n1asr"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="8_7hpsj"]
+[ext_resource type="Texture2D" uid="uid://dvltg05lmrcld" path="res://Assets/Sprites/UI/tooltips/Mouse/tooltip_pushingV2.png" id="8_bc18p"]
+[ext_resource type="Texture2D" uid="uid://ggb48nejid2x" path="res://Assets/Sprites/UI/tooltips/Mouse/tooltip_mirrors.png" id="9_e6162"]
+[ext_resource type="Texture2D" uid="uid://e7apkbqxfp85" path="res://Assets/Sprites/UI/tooltips/Mouse/tooltip_enemy_laser.png" id="10_gxmci"]
+[ext_resource type="Texture2D" uid="uid://bh5nlk3n7trrn" path="res://Assets/Sprites/UI/tooltips/controller/c_tooltip_controls.png" id="13_hka6e"]
+[ext_resource type="Texture2D" uid="uid://b0w62tqd33q3e" path="res://Assets/Sprites/UI/tooltips/controller/c_tooltip_petrifying.png" id="14_q4qnv"]
+[ext_resource type="Texture2D" uid="uid://4umqxhuiwcy8" path="res://Assets/Sprites/UI/tooltips/controller/c_tooltip_pushing.png" id="15_e2sk8"]
+[ext_resource type="Texture2D" uid="uid://wiixem3pt4t" path="res://Assets/Sprites/UI/tooltips/controller/c_tooltip_lever.png" id="16_5qomw"]
+[ext_resource type="Texture2D" uid="uid://m25e2ogjgo86" path="res://Assets/Sprites/UI/tooltips/controller/c_tooltip_mirrorsV2.png" id="17_kmf0s"]
+[ext_resource type="Texture2D" uid="uid://m11rmiwosaki" path="res://Assets/Sprites/UI/tooltips/controller/c_tooltip_precise_aiming.png" id="18_06r2g"]
+
+[sub_resource type="Animation" id="Animation_3jhmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-324, 240)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frame:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_vqaul")]
+}
+
+[sub_resource type="Animation" id="Animation_52jx0"]
+resource_name = "close"
+length = 0.3
+step = 0.6165
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(420, 236), Vector2(-324, 236)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frame:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_7p0f7"), ExtResource("2_vqaul")]
+}
+
+[sub_resource type="Animation" id="Animation_4581o"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-324, 236), Vector2(420, 236)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frame:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_7p0f7")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmdnq"]
+_data = {
+&"RESET": SubResource("Animation_3jhmr"),
+&"close": SubResource("Animation_52jx0"),
+&"open": SubResource("Animation_4581o")
+}
+
+[node name="Tooltips" type="Control" node_paths=PackedStringArray("mouse_tooltips", "controller_tooltips")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dkjic")
+mouse_tooltips = [NodePath("Frame/Mouse/Movement"), NodePath("Frame/Mouse/Petrifying"), NodePath("Frame/Mouse/Pushing_pulling"), NodePath("Frame/Mouse/Enemy_laser"), NodePath("Frame/Mouse/Levers"), NodePath("Frame/Mouse/Mirrors")]
+controller_tooltips = [NodePath("Frame/Controller/Movement"), NodePath("Frame/Controller/Petrifying"), NodePath("Frame/Controller/Pushing_pulling"), NodePath("Frame/Controller/Enemy_laser"), NodePath("Frame/Controller/Levers"), NodePath("Frame/Controller/Mirrors"), NodePath("Frame/Controller/Precise_aiming")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fmdnq")
+}
+speed_scale = 0.43
+
+[node name="Frame" type="Sprite2D" parent="."]
+z_index = 1000
+texture_filter = 4
+position = Vector2(-324, 240)
+texture = ExtResource("2_vqaul")
+region_enabled = true
+region_rect = Rect2(0, 0, 840, 472)
+
+[node name="Press_tab" type="Label" parent="Frame"]
+offset_left = -405.0
+offset_top = 186.0
+offset_right = -42.0
+offset_bottom = 217.0
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 25
+text = "press tab to open/switch tooltips"
+
+[node name="Mouse" type="Node2D" parent="Frame"]
+visible = false
+
+[node name="Movement" type="Node2D" parent="Frame/Mouse"]
+script = ExtResource("4_qkbk2")
+
+[node name="Walk" type="Sprite2D" parent="Frame/Mouse/Movement"]
+visible = false
+texture_filter = 4
+position = Vector2(-64, -16)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_jqs8a")
+
+[node name="Label" type="Label" parent="Frame/Mouse/Movement"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = 29.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "movement"
+
+[node name="Petrifying" type="Node2D" parent="Frame/Mouse"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Petri" type="Sprite2D" parent="Frame/Mouse/Petrifying"]
+texture_filter = 4
+position = Vector2(-54.5, -15.5)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_yax8t")
+
+[node name="Label" type="Label" parent="Frame/Mouse/Petrifying"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = 32.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "petrifying"
+
+[node name="Pushing_pulling" type="Node2D" parent="Frame/Mouse"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Push" type="Sprite2D" parent="Frame/Mouse/Pushing_pulling"]
+texture_filter = 4
+position = Vector2(-56, -26)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_bc18p")
+
+[node name="Label" type="Label" parent="Frame/Mouse/Pushing_pulling"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = 300.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "pushing/pulling"
+
+[node name="Enemy_laser" type="Node2D" parent="Frame/Mouse"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Enemy_laser" type="Sprite2D" parent="Frame/Mouse/Enemy_laser"]
+texture_filter = 4
+position = Vector2(-56, -26)
+scale = Vector2(0.28889, 0.28889)
+texture = ExtResource("10_gxmci")
+
+[node name="Label" type="Label" parent="Frame/Mouse/Enemy_laser"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = 110.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "Enemy laser"
+
+[node name="Levers" type="Node2D" parent="Frame/Mouse"]
+visible = false
+position = Vector2(28, 36)
+script = ExtResource("4_qkbk2")
+
+[node name="Lever" type="Sprite2D" parent="Frame/Mouse/Levers"]
+texture_filter = 4
+position = Vector2(-88, 0)
+scale = Vector2(0.41, 0.41)
+texture = ExtResource("7_n1asr")
+
+[node name="Label" type="Label" parent="Frame/Mouse/Levers"]
+offset_left = -432.0
+offset_top = -260.0
+offset_right = -342.0
+offset_bottom = -217.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "levers"
+
+[node name="Mirrors" type="Node2D" parent="Frame/Mouse"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Mirrors" type="Sprite2D" parent="Frame/Mouse/Mirrors"]
+texture_filter = 4
+position = Vector2(-48, -19)
+scale = Vector2(0.290888, 0.290888)
+texture = ExtResource("9_e6162")
+
+[node name="Label" type="Label" parent="Frame/Mouse/Mirrors"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = -60.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "mirrors"
+
+[node name="Controller" type="Node2D" parent="Frame"]
+
+[node name="Movement" type="Node2D" parent="Frame/Controller"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Walk" type="Sprite2D" parent="Frame/Controller/Movement"]
+visible = false
+position = Vector2(-64, -16)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_hka6e")
+
+[node name="Label" type="Label" parent="Frame/Controller/Movement"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = 29.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "movement"
+
+[node name="Petrifying" type="Node2D" parent="Frame/Controller"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Petri" type="Sprite2D" parent="Frame/Controller/Petrifying"]
+texture_filter = 4
+position = Vector2(-54.5, -15.5)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_q4qnv")
+
+[node name="Label" type="Label" parent="Frame/Controller/Petrifying"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = 32.0
+offset_bottom = -101.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "petrifying"
+
+[node name="Pushing_pulling" type="Node2D" parent="Frame/Controller"]
+visible = false
+position = Vector2(-56, -26)
+script = ExtResource("4_qkbk2")
+
+[node name="Push" type="Sprite2D" parent="Frame/Controller/Pushing_pulling"]
+texture_filter = 4
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("15_e2sk8")
+
+[node name="Label" type="Label" parent="Frame/Controller/Pushing_pulling"]
+offset_left = -348.0
+offset_top = -198.0
+offset_right = 356.0
+offset_bottom = -75.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "pushing/pulling"
+
+[node name="Enemy_laser" type="Node2D" parent="Frame/Controller"]
+visible = false
+position = Vector2(-56, -26)
+script = ExtResource("4_qkbk2")
+
+[node name="Enemy_laser" type="Sprite2D" parent="Frame/Controller/Enemy_laser"]
+visible = false
+texture_filter = 4
+scale = Vector2(0.289, 0.289)
+texture = ExtResource("10_gxmci")
+
+[node name="Label" type="Label" parent="Frame/Controller/Enemy_laser"]
+offset_left = -348.0
+offset_top = -198.0
+offset_right = -168.0
+offset_bottom = -155.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "Enemy Laser"
+
+[node name="Levers" type="Node2D" parent="Frame/Controller"]
+visible = false
+position = Vector2(324, -236)
+script = ExtResource("4_qkbk2")
+
+[node name="Lever" type="Sprite2D" parent="Frame/Controller/Levers"]
+texture_filter = 4
+position = Vector2(-384, 272)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("16_5qomw")
+
+[node name="Label" type="Label" parent="Frame/Controller/Levers"]
+offset_left = -728.0
+offset_top = 12.0
+offset_right = -472.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "levers"
+
+[node name="Mirrors" type="Node2D" parent="Frame/Controller"]
+position = Vector2(-404, -227)
+script = ExtResource("4_qkbk2")
+
+[node name="Mirrors" type="Sprite2D" parent="Frame/Controller/Mirrors"]
+texture_filter = 4
+position = Vector2(356, 208)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("17_kmf0s")
+
+[node name="Label" type="Label" parent="Frame/Controller/Mirrors"]
+offset_top = 3.0
+offset_right = 344.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "mirrors"
+
+[node name="Precise_aiming" type="Node2D" parent="Frame/Controller"]
+visible = false
+script = ExtResource("4_qkbk2")
+
+[node name="Precise_aiming" type="Sprite2D" parent="Frame/Controller/Precise_aiming"]
+texture_filter = 4
+position = Vector2(-60, -27)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("18_06r2g")
+
+[node name="Label" type="Label" parent="Frame/Controller/Precise_aiming"]
+offset_left = -404.0
+offset_top = -224.0
+offset_right = -193.0
+offset_bottom = -181.0
+theme_override_colors/font_color = Color(0.898039, 0.462745, 0.87451, 1)
+theme_override_fonts/font = ExtResource("8_7hpsj")
+theme_override_font_sizes/font_size = 35
+text = "Precise aiming"

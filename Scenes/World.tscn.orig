@@ -1,0 +1,302 @@
+[gd_scene load_steps=16 format=4 uid="uid://cnc7exjod5tkb"]
+
+[ext_resource type="Texture2D" uid="uid://cdu387gru8vcc" path="res://Assets/placeholder_bg.PNG" id="1_mbn50"]
+[ext_resource type="PackedScene" uid="uid://881ebyeydmog" path="res://Scenes/Characters/Player.tscn" id="3_5lbyj"]
+<<<<<<< working copy
+[ext_resource type="PackedScene" uid="uid://cpgpusjnxfg06" path="res://Scenes/Interactables/basic_laser.tscn" id="3_amqlf"]
+=======
+>>>>>>> merge rev
+[ext_resource type="PackedScene" uid="uid://bifikppn72eto" path="res://Scenes/Characters/Enemy.tscn" id="4_an7gx"]
+[ext_resource type="Texture2D" uid="uid://bnfqcex76bkop" path="res://Assets/brackeys_platformer_assets/sprites/world_tileset.png" id="5_s8es0"]
+[ext_resource type="Texture2D" uid="uid://ljoom86xx72u" path="res://Assets/brackeys_platformer_assets/sprites/platforms.png" id="6_wbkmk"]
+[ext_resource type="PackedScene" uid="uid://bljsvpfi28jej" path="res://Scenes/Interactables/reflector.tscn" id="7_y5lxp"]
+[ext_resource type="PackedScene" uid="uid://b5s6i6qo3j3x6" path="res://Scenes/Interactables/door.tscn" id="9_6c4x6"]
+[ext_resource type="PackedScene" uid="uid://cjdqd7shph3l7" path="res://Scenes/Interactables/Statue_head.tscn" id="10_6abdf"]
+[ext_resource type="Script" path="res://Scripts/Tools/TilemapCollisionBaker.gd" id="11_3yxei"]
+[ext_resource type="PackedScene" uid="uid://8xrg1kpgj6un" path="res://Scenes/Interactables/switch.tscn" id="11_5ao4y"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nm733"]
+friction = 0.93
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yk6x6"]
+texture = ExtResource("5_s8es0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+3:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+6:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_goq6a"]
+texture = ExtResource("6_wbkmk")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qmgho"]
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_yk6x6")
+sources/1 = SubResource("TileSetAtlasSource_goq6a")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbdht"]
+size = Vector2(1792, 16)
+
+[node name="World" type="Node2D"]
+
+[node name="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2" type="Node" parent="."]
+
+[node name="Background" type="Node" parent="."]
+
+[node name="PlaceholderBg" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(889, -385)
+scale = Vector2(0.46223, 0.46223)
+texture = ExtResource("1_mbn50")
+
+[node name="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" type="Node" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_5lbyj")]
+<<<<<<< working copy
+position = Vector2(811, -35)
+=======
+position = Vector2(319, -280)
+scale = Vector2(2, 2)
+>>>>>>> merge rev
+jump_power = -1000.0
+
+<<<<<<< working copy
+[node name="Basic_laser" parent="Player" node_paths=PackedStringArray("emitter") instance=ExtResource("3_amqlf")]
+position = Vector2(-1, 0)
+emitter = NodePath("..")
+
+=======
+>>>>>>> merge rev
+[node name="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3" type="Node" parent="."]
+
+[node name="FirstEnemy" parent="." instance=ExtResource("4_an7gx")]
+<<<<<<< working copy
+position = Vector2(676, -39)
+disable_mode = 2
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_nm733")
+gravity_scale = 0.0
+freeze_mode = 1
+fall_grav = 1.0
+
+[node name="Enemy2" parent="." instance=ExtResource("4_an7gx")]
+position = Vector2(1066, -241)
+=======
+position = Vector2(930, -37)
+>>>>>>> merge rev
+disable_mode = 2
+<<<<<<< working copy
+mass = 5.0
+=======
+mass = 6.0
+>>>>>>> merge rev
+physics_material_override = SubResource("PhysicsMaterial_nm733")
+gravity_scale = 1.0
+freeze_mode = 1
+fall_grav = 1.0
+
+[node name="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4" type="Node" parent="."]
+
+[node name="TileMap" type="Node" parent="."]
+
+[node name="TileMapLayers" type="Node" parent="TileMap"]
+
+[node name="ground_layer" type="TileMapLayer" parent="TileMap/TileMapLayers"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAP//AQABAAMAAAABAP//AQACAAMAAAACAP//AQABAAMAAAADAP//AQACAAMAAAAEAP//AQABAAMAAAAFAP//AQACAAMAAAAGAP//AQABAAMAAAAHAP//AQACAAMAAAAIAP//AQABAAMAAAAJAP//AQACAAMAAAAKAP//AQABAAMAAAALAP//AQACAAMAAAAMAP//AQABAAMAAAANAP//AQACAAMAAAAOAP//AQABAAMAAAAPAP//AQACAAMAAAAQAP//AQABAAMAAAARAP//AQACAAMAAAASAP//AQABAAMAAAATAP//AQACAAMAAAAUAP//AQABAAMAAAAVAP//AQACAAMAAAAWAP//AQABAAMAAAAXAP//AQACAAMAAAAYAP//AQABAAMAAAAZAP//AQACAAMAAAAaAP//AQABAAMAAAAbAP//AQACAAMAAAAcAP//AQABAAMAAAAdAP//AQACAAMAAAAeAP//AQABAAMAAAAfAP//AQACAAMAAAAgAP//AQABAAMAAAAhAP//AQACAAMAAAAiAP//AQABAAMAAAAjAP//AQACAAMAAAAkAP//AQABAAMAAAAlAP//AQACAAMAAAAmAP//AQABAAMAAAAnAP//AQACAAMAAAAoAP//AQABAAMAAAApAP//AQACAAMAAAAqAP//AQABAAMAAAArAP//AQACAAMAAAAsAP//AQABAAMAAAAtAP//AQACAAMAAAAuAP//AQABAAMAAAAvAP//AQACAAMAAAAwAP//AQABAAMAAAAxAP//AQACAAMAAAAyAP//AQABAAMAAAAzAP//AQACAAMAAAA0AP//AQABAAMAAAA1AP//AQACAAMAAAA2AP//AQABAAMAAAA3AP//AQACAAMAAAA4AP//AQABAAMAAAA5AP//AQACAAMAAAA6AP//AQABAAMAAAA7AP//AQACAAMAAAA8AP//AQABAAMAAAA9AP//AQACAAMAAAA+AP//AQABAAMAAAA/AP//AQACAAMAAABAAP//AQABAAMAAABBAP//AQACAAMAAABCAP//AQABAAMAAABDAP//AQACAAMAAABEAP//AQABAAMAAABFAP//AQACAAMAAABGAP//AQABAAMAAABHAP//AQACAAMAAABIAP//AQABAAMAAABJAP//AQACAAMAAABKAP//AQABAAMAAABLAP//AQACAAMAAABMAP//AQABAAMAAABNAP//AQACAAMAAABOAP//AQABAAMAAABPAP//AQACAAMAAABQAP//AQABAAMAAABRAP//AQACAAMAAABSAP//AQABAAMAAABTAP//AQACAAMAAABUAP//AQABAAMAAABVAP//AQACAAMAAABWAP//AQABAAMAAABXAP//AQACAAMAAABYAP//AQABAAMAAABZAP//AQACAAMAAABaAP//AQABAAMAAABbAP//AQACAAMAAABcAP//AQABAAMAAABdAP//AQACAAMAAABeAP//AQABAAMAAABfAP//AQACAAMAAABgAP//AQABAAMAAABhAP//AQACAAMAAABiAP//AQABAAMAAABjAP//AQACAAMAAABkAP//AQABAAMAAABlAP//AQACAAMAAABmAP//AQABAAMAAABnAP//AQACAAMAAABoAP//AQABAAMAAABpAP//AQACAAMAAABqAP//AQABAAMAAABrAP//AQACAAMAAABsAP//AQABAAMAAABtAP//AQACAAMAAABuAP//AQABAAMAAABvAP//AQACAAMAAAA=")
+tile_set = SubResource("TileSet_qmgho")
+use_kinematic_bodies = true
+collision_visibility_mode = 1
+
+[node name="TileMapCollider" type="StaticBody2D" parent="TileMap"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("11_3yxei")
+tilemaplayers_nodepaths = Array[NodePath]([NodePath("../TileMapLayers/ground_layer"), NodePath("")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/TileMapCollider"]
+position = Vector2(896, -8)
+shape = SubResource("RectangleShape2D_wbdht")
+
+[node name="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~5" type="Node" parent="."]
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Reflector" parent="Interactables" node_paths=PackedStringArray("marker_2d") instance=ExtResource("7_y5lxp")]
+position = Vector2(927, -333)
+marker_2d = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Interactables/Reflector"]
+position = Vector2(-188, -172)
+
+[node name="Statue_head" parent="Interactables" node_paths=PackedStringArray("raycast_target") instance=ExtResource("10_6abdf")]
+<<<<<<< working copy
+position = Vector2(453, -524)
+=======
+position = Vector2(471, -225)
+>>>>>>> merge rev
+raycast_target = NodePath("Marker2D")
+target_type = 1
+<<<<<<< working copy
+raycast_active = true
+=======
+>>>>>>> merge rev
+
+[node name="Marker2D" type="Marker2D" parent="Interactables/Statue_head"]
+position = Vector2(311, 13)
+
+[node name="Reflector2" parent="Interactables" node_paths=PackedStringArray("marker_2d") instance=ExtResource("7_y5lxp")]
+position = Vector2(745, -508)
+marker_2d = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Interactables/Reflector2"]
+position = Vector2(-256, -156)
+
+[node name="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~6" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(906, -318)
+offset = Vector2(0, 10)
+
+[node name="Door" parent="." node_paths=PackedStringArray("switches") instance=ExtResource("9_6c4x6")]
+position = Vector2(1465, -68)
+is_open = true
+switches = [NodePath("../Switch")]
+
+[node name="Switch" parent="." instance=ExtResource("11_5ao4y")]
+position = Vector2(895, -20)

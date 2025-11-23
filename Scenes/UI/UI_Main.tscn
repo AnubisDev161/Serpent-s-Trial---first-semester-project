@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://8cn0eu1gqb1y"]
+
+[ext_resource type="Script" uid="uid://y8jvjeubfchj" path="res://Scripts/UI/ui_main.gd" id="1_fmv5y"]
+[ext_resource type="PackedScene" uid="uid://cth1jk8eiutsc" path="res://Scenes/UI/Menu.tscn" id="2_krtvd"]
+[ext_resource type="PackedScene" uid="uid://c8ndfrbkpdi22" path="res://Scenes/UI/Credits.tscn" id="3_8vwwn"]
+[ext_resource type="PackedScene" uid="uid://20ll3j7og462" path="res://Scenes/UI/Pause_Menu.tscn" id="4_khlii"]
+[ext_resource type="PackedScene" uid="uid://coyu1pb2jw6e0" path="res://Scenes/UI/Settings.tscn" id="5_mh7gg"]
+[ext_resource type="PackedScene" uid="uid://bnl48568oqbtm" path="res://Scenes/UI/Tooltips.tscn" id="6_dan6n"]
+[ext_resource type="PackedScene" uid="uid://b3q1ob6m7sh34" path="res://Scenes/UI/Level_Selection.tscn" id="7_ydadx"]
+
+[node name="UI_Main" type="CanvasLayer" node_paths=PackedStringArray("default_menu") groups=["UI_Brudi"]]
+process_mode = 3
+layer = 10
+script = ExtResource("1_fmv5y")
+default_menu = NodePath("Menu")
+default_start_time = 1.0
+
+[node name="Menu" parent="." groups=["UI"] instance=ExtResource("2_krtvd")]
+
+[node name="Pause" parent="." groups=["UI"] instance=ExtResource("4_khlii")]
+visible = false
+
+[node name="Credits" parent="." groups=["UI"] instance=ExtResource("3_8vwwn")]
+visible = false
+
+[node name="Settings" parent="." groups=["UI"] instance=ExtResource("5_mh7gg")]
+visible = false
+
+[node name="Tooltips" parent="." instance=ExtResource("6_dan6n")]
+visible = false
+
+[node name="Level_Selection" parent="." instance=ExtResource("7_ydadx")]
+visible = false

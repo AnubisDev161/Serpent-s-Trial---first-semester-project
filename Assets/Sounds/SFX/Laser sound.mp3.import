@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhakqk3me73ob"
+path="res://.godot/imported/Laser sound.mp3-b341af883f1a76bd0a3464f198ce9efa.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Laser sound.mp3"
+dest_files=["res://.godot/imported/Laser sound.mp3-b341af883f1a76bd0a3464f198ce9efa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

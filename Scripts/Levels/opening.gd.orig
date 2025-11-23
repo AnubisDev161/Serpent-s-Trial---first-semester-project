@@ -1,0 +1,31 @@
+extends Path2D
+
+@onready var path_follow = $PathFollow2D
+@export var opening_cam: Camera2D
+@export var speed_scale = 0.1
+var is_playing = false
+
+signal disable_player(value: bool)
+#signal cutscene_finished
+
+func start_opening(_player):
+	connect("disable_player", _player.is_in_cutscene)
+	disable_player.emit(true)
+	is_playing = true
+	opening_cam.enabled = true
+
+func _physics_process(delta: float) -> void:
+	if is_playing:
+		if !is_equal_approx(path_follow.progress_ratio, 0.99):
+			path_follow.progress_ratio += delta * speed_scale
+		else:
+			opening_cam.enabled = false
+			disable_player.emit(false)
+			Signal_Bus.cutscene_finished.emit()
+			queue_free()
+
+	if Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("jump"):
+		opening_cam.enabled = false
+		disable_player.emit(false)
+		Signal_Bus.cutscene_finished.emit()
+		queue_free()

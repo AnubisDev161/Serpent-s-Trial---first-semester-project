@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkpbk32f4xoph"]
+
+[ext_resource type="Script" uid="uid://b17n0563nodsp" path="res://Scripts/UI/TooltipStuff/tooltip_push_area.gd" id="1_jiigq"]
+
+[node name="Tooltip_Area" type="Area2D"]
+script = ExtResource("1_jiigq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

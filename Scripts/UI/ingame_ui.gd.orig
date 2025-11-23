@@ -1,0 +1,18 @@
+extends CanvasLayer
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $Control/AnimatedSprite2D
+
+func _ready() -> void:
+	$Restart/Timer.start()
+
+func update_charges_ui():
+	animated_sprite_2d.frame +=1
+
+func set_charges_ui(value):
+	animated_sprite_2d.frame = 5 -value
+	animated_sprite_2d.frame
+
+func _on_timer_timeout() -> void:
+	print_debug("Timer un out")
+	$Restart.visible = true
+	$Restart/AnimationPlayer.play("restart_text_float")

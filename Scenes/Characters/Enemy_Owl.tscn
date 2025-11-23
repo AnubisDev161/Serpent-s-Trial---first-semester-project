@@ -1,0 +1,131 @@
+[gd_scene load_steps=18 format=3 uid="uid://dp4ru4chwcxu"]
+
+[ext_resource type="Texture2D" uid="uid://dnrvxi4sx7oi3" path="res://Assets/Sprites/Characters/Enemies/anim_owl_flight.png" id="1_h76wp"]
+[ext_resource type="Script" uid="uid://w36xvvff2r6g" path="res://Scripts/Character/Enemys/Enemy_Owl/enemy_owl.gd" id="1_qlwo2"]
+[ext_resource type="Script" uid="uid://rfyixjp15n8o" path="res://Scripts/Character/State Machine/state_machine.gd" id="2_msp4m"]
+[ext_resource type="Script" uid="uid://bmxxy17bql0dl" path="res://Scripts/Character/Enemys/Enemy_Owl/States/enemy_owl_idle.gd" id="3_575xh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y7mn"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(0, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8jf1"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(0, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acwwm"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(143, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m73hg"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(286, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc1jg"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(429, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awwmf"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(572, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ill"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(715, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf7au"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(858, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8gll"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(1001, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myjek"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(1144, 0, 143, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6ox5"]
+atlas = ExtResource("1_h76wp")
+region = Rect2(1287, 0, 143, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjvvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y7mn")
+}],
+"loop": true,
+"name": &"enemy_idle",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8jf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acwwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m73hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc1jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awwmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65ill")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf7au")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8gll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myjek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6ox5")
+}],
+"loop": true,
+"name": &"enemy_walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j4sin"]
+radius = 29.0
+height = 112.0
+
+[node name="Enemy_Owl" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(-1, 1)
+script = ExtResource("1_qlwo2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rjvvn")
+animation = &"enemy_idle"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1, 1.013)
+shape = SubResource("CapsuleShape2D_j4sin")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+scale = Vector2(1, 1.013)
+shape = SubResource("CapsuleShape2D_j4sin")
+
+[node name="Line_of_sight" type="RayCast2D" parent="."]
+
+[node name="State_Machine" type="Node" parent="."]
+script = ExtResource("2_msp4m")
+
+[node name="Idle" type="Node" parent="State_Machine"]
+script = ExtResource("3_575xh")
+
+[node name="Charge" type="Node" parent="State_Machine"]

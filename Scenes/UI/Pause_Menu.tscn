@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=3 uid="uid://20ll3j7og462"]
+
+[ext_resource type="Script" uid="uid://cqjpfy11rdeeq" path="res://Scripts/UI/Menus/pause_menu.gd" id="1_moxoh"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="2_cw85i"]
+[ext_resource type="Texture2D" uid="uid://bil82dcj8umeq" path="res://Assets/Sprites/UI/pause_menu/UI_pause_menu_polishedV3.png" id="2_ua36h"]
+[ext_resource type="Theme" uid="uid://t8m20x0yt8ss" path="res://Assets/Others/button_style.tres" id="3_4udtg"]
+[ext_resource type="StyleBox" uid="uid://reb2767wns1u" path="res://Assets/Others/selector.tres" id="5_mfjle"]
+[ext_resource type="StyleBox" uid="uid://dpoh6y53ole7r" path="res://Scenes/UI/selector_pause_menu.tres" id="5_ups86"]
+
+[node name="Pause_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_moxoh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -2560.0
+offset_top = -725.0
+offset_right = -1760.0
+offset_bottom = 715.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(3.23082, 1.01851)
+color = Color(0.0470588, 0.0470588, 0.0470588, 0.607843)
+
+[node name="pause_menu" type="Sprite2D" parent="."]
+texture_filter = 4
+position = Vector2(1289, 727)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_ua36h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = 19.0001
+offset_right = 224.0
+offset_bottom = 421.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.875267, 0.875267)
+theme_override_constants/separation = 30
+
+[node name="Resume_Button" type="Button" parent="VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+focus_next = NodePath("../Settings_Button")
+theme = ExtResource("3_4udtg")
+theme_override_fonts/font = ExtResource("2_cw85i")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("5_ups86")
+theme_override_styles/hover = ExtResource("5_ups86")
+toggle_mode = true
+text = "RESUME"
+
+[node name="Restart_Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_4udtg")
+theme_override_fonts/font = ExtResource("2_cw85i")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("5_ups86")
+theme_override_styles/hover = ExtResource("5_ups86")
+text = "RESTART"
+
+[node name="Settings_Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Main_Menu_Button")
+focus_next = NodePath("../Main_Menu_Button")
+theme = ExtResource("3_4udtg")
+theme_override_fonts/font = ExtResource("2_cw85i")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("5_ups86")
+theme_override_styles/hover = ExtResource("5_ups86")
+text = "SETTINGS"
+
+[node name="Main_Menu_Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Restart_Button")
+focus_next = NodePath("../Restart_Button")
+theme = ExtResource("3_4udtg")
+theme_override_fonts/font = ExtResource("2_cw85i")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = ExtResource("5_mfjle")
+theme_override_styles/hover = ExtResource("5_ups86")
+text = "MAIN MENU"
+
+[node name="Logo_Text" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -314.0
+offset_top = -129.0
+offset_right = 319.4
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo_Text_Lable" type="Label" parent="Logo_Text"]
+texture_filter = 4
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.384314)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 9
+theme_override_fonts/font = ExtResource("2_cw85i")
+theme_override_font_sizes/font_size = 100
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Resume_Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart_Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main_Menu_Button" to="." method="_on_main_menu_button_pressed"]

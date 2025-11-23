@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btfc7ll8jlvek"
+path="res://.godot/imported/Medusa Soundtrack Gameplay Track.mp3-a7af3fb67144758b022580833ac11603.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Music/Medusa Soundtrack Gameplay Track.mp3"
+dest_files=["res://.godot/imported/Medusa Soundtrack Gameplay Track.mp3-a7af3fb67144758b022580833ac11603.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

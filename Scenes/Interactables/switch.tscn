@@ -1,0 +1,180 @@
+[gd_scene load_steps=13 format=3 uid="uid://8xrg1kpgj6un"]
+
+[ext_resource type="Script" uid="uid://dllau0t4akam2" path="res://Scripts/Interactables/switch.gd" id="1_31hro"]
+[ext_resource type="Texture2D" uid="uid://b57cclgb28ggx" path="res://Assets/Sprites/Interactables/asset_pressure_plate_on-off_v2.png" id="2_2pa1q"]
+[ext_resource type="AudioStream" uid="uid://dusjtpv5jax1m" path="res://Assets/Sounds/SFX/clank1-91862.mp3" id="3_wi4yg"]
+[ext_resource type="AudioStream" uid="uid://7emsx4hcet5l" path="res://Assets/Sounds/SFX/mechanical1-107614.mp3" id="4_72fet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7ta3"]
+size = Vector2(87, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25gka"]
+atlas = ExtResource("2_2pa1q")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yca1x"]
+atlas = ExtResource("2_2pa1q")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4m5s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25gka")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yca1x")
+}],
+"loop": false,
+"name": &"released",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_nonwf"]
+resource_name = "Pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pressed"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(0.466516),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer2D2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_82tu5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"released"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer2D2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_557mq"]
+resource_name = "Released"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"released"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aruqh"]
+_data = {
+&"Pressed": SubResource("Animation_nonwf"),
+&"RESET": SubResource("Animation_82tu5"),
+&"Released": SubResource("Animation_557mq")
+}
+
+[node name="Switch" type="Area2D"]
+position = Vector2(1, 21)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_31hro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -10)
+shape = SubResource("RectangleShape2D_d7ta3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 27)
+sprite_frames = SubResource("SpriteFrames_o4m5s")
+animation = &"released"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wi4yg")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_aruqh")
+}
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_72fet")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

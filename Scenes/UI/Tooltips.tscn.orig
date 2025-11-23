@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnl48568oqbtm"]
+
+<<<<<<< working copy
+[ext_resource type="Texture2D" uid="uid://cnkap10op4bpg" path="res://Assets/Sprites/UI/UI_pop_up_window_polishedV2_window_open.png" id="1_bvxxa"]
+=======
+[ext_resource type="Texture2D" uid="uid://m4utfsbog3ot" path="res://Assets/Sprites/UI/UI_pop_up_window_polishedV2_window_open.png" id="1_bvxxa"]
+>>>>>>> merge rev
+[ext_resource type="Script" path="res://Scripts/UI/Menus/tooltips.gd" id="1_dkjic"]
+<<<<<<< working copy
+[ext_resource type="Texture2D" uid="uid://detnft1qx71wi" path="res://Assets/Sprites/UI/tooltip_push.png" id="2_iec3b"]
+[ext_resource type="Texture2D" uid="uid://qqa6bve6x5vp" path="res://Assets/Sprites/UI/tooltip_walk.png" id="3_1j6ea"]
+[ext_resource type="Texture2D" uid="uid://hvkksjm46m3e" path="res://Assets/Sprites/UI/tooltip_petri.png" id="4_p1kjb"]
+=======
+[ext_resource type="Texture2D" uid="uid://cfksb4ae1qwlo" path="res://Assets/Sprites/UI/tooltips/tooltip_controls.png" id="3_ub6ki"]
+>>>>>>> merge rev
+[ext_resource type="Script" path="res://Scripts/UI/TooltipStuff/tooltip_data.gd" id="4_qkbk2"]
+[ext_resource type="Texture2D" uid="uid://dc0yxub3n3831" path="res://Assets/Sprites/UI/tooltips/tooltip_petrifying.png" id="5_yax8t"]
+[ext_resource type="Texture2D" uid="uid://dp727imr71gc3" path="res://Assets/Sprites/UI/tooltips/tooltip_pushing_cube.png" id="6_p8082"]
+
+[sub_resource type="Animation" id="Animation_3jhmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-325, 240)]
+}
+
+[sub_resource type="Animation" id="Animation_52jx0"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(420, 240), Vector2(-325, 240)]
+}
+
+[sub_resource type="Animation" id="Animation_4581o"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-323, 240), Vector2(420, 240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmdnq"]
+_data = {
+"RESET": SubResource("Animation_3jhmr"),
+"close": SubResource("Animation_52jx0"),
+"open": SubResource("Animation_4581o")
+}
+
+[node name="Tooltips" type="Control" node_paths=PackedStringArray("tooltips")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dkjic")
+tooltips = [NodePath("Frame/Walk"), NodePath("Frame/Petri"), NodePath("Frame/Push")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fmdnq")
+}
+
+[node name="Frame" type="Sprite2D" parent="."]
+z_index = 1000
+position = Vector2(-325, 240)
+texture = ExtResource("1_bvxxa")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(1080, 0, 840, 480)
+
+[node name="Walk" type="Sprite2D" parent="Frame"]
+visible = false
+position = Vector2(-55, -25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ub6ki")
+script = ExtResource("4_qkbk2")
+
+[node name="Petri" type="Sprite2D" parent="Frame"]
+visible = false
+position = Vector2(-55, -25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_yax8t")
+script = ExtResource("4_qkbk2")
+
+[node name="Push" type="Sprite2D" parent="Frame"]
+visible = false
+z_index = -1
+position = Vector2(-55, -25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_p8082")
+script = ExtResource("4_qkbk2")

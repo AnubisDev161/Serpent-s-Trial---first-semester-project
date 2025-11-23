@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dejoocj6rl1vm"]
+
+[sub_resource type="Gradient" id="Gradient_fna02"]
+colors = PackedColorArray(0.117647, 0.117647, 0.117647, 0.392157, 0.117647, 0.117647, 0.117647, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rtpvh"]
+gradient = SubResource("Gradient_fna02")
+width = 10000
+height = 5000
+
+[node name="Light" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(38, 39)
+texture = SubResource("GradientTexture2D_rtpvh")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 2.62
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0142752, 0.0142752, 0.0142752, 1)

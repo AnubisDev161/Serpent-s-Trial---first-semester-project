@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfsvb7eyvu711"]
+
+[ext_resource type="Script" uid="uid://cobelaymu4kd1" path="res://Scripts/Levels/game.gd" id="1_5er4v"]
+[ext_resource type="PackedScene" uid="uid://8cn0eu1gqb1y" path="res://Scenes/UI/UI_Main.tscn" id="2_2bin6"]
+[ext_resource type="PackedScene" uid="uid://5gf2euxsc0vx" path="res://Scenes/Levels/Scene_Loader.tscn" id="3_yjeso"]
+[ext_resource type="PackedScene" uid="uid://dr515hae6jcqq" path="res://Scenes/Levels/Level_Transition.tscn" id="4_avo8j"]
+[ext_resource type="PackedScene" uid="uid://chhmdry2nskhs" path="res://Scenes/Sound/Music_and_sound_manager.tscn" id="5_rsy6y"]
+[ext_resource type="PackedScene" uid="uid://1d5q6qru2n6e" path="res://Scenes/Game_infrastructure/Input_manager.tscn" id="6_ob6a8"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("ui_main", "scene_loader", "level_transition")]
+process_mode = 3
+script = ExtResource("1_5er4v")
+ui_main = NodePath("UI_Main")
+scene_loader = NodePath("Scene_loader")
+level_transition = NodePath("Level_Transition")
+tooltip_open_time = 0.1
+
+[node name="Scene_loader" parent="." instance=ExtResource("3_yjeso")]
+
+[node name="UI_Main" parent="." instance=ExtResource("2_2bin6")]
+
+[node name="Level_Transition" parent="." instance=ExtResource("4_avo8j")]
+
+[node name="Music_and_sound_manager" parent="." instance=ExtResource("5_rsy6y")]
+
+[node name="Input_manager" parent="." instance=ExtResource("6_ob6a8")]
+
+[node name="Tooltip_open_timer" type="Timer" parent="."]
+wait_time = 0.32
+one_shot = true
+
+[connection signal="timeout" from="Tooltip_open_timer" to="." method="_on_tooltip_open_timer_timeout"]

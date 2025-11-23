@@ -1,0 +1,579 @@
+[gd_scene load_steps=16 format=3 uid="uid://b3q1ob6m7sh34"]
+
+[ext_resource type="Script" uid="uid://bx5e4ppbax7aw" path="res://Scripts/UI/Menus/level_selection.gd" id="1_0jywo"]
+[ext_resource type="Texture2D" uid="uid://cv6jl0pbps03b" path="res://Assets/Sprites/UI/UI_temple.png" id="2_8e36u"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="3_umcju"]
+[ext_resource type="Texture2D" uid="uid://dqh71fk3malcm" path="res://Assets/Sprites/UI/Level_select/UI_door_lock.png" id="4_b6al8"]
+[ext_resource type="Texture2D" uid="uid://c4hbwyp6rfdnd" path="res://Assets/Sprites/Background/parallax_foreground_bottom_v5.png" id="4_calqo"]
+[ext_resource type="Script" uid="uid://cvsukdewj6l55" path="res://Scripts/Levels/level_select_button.gd" id="4_hsmw3"]
+[ext_resource type="Shader" uid="uid://sip0qjm0fnf7" path="res://Scenes/Artists Test Scenes/Parallax.tres" id="5_g3w5m"]
+[ext_resource type="Texture2D" uid="uid://c55lpnc8oyrx0" path="res://Assets/Sprites/Background/parallax_background_relief_v6.3.png" id="5_rgat5"]
+[ext_resource type="Texture2D" uid="uid://n8eiu7h0165d" path="res://Assets/Sprites/Background/parallax_background_pillars1_v2.4.3.png" id="6_lmm7h"]
+[ext_resource type="Texture2D" uid="uid://bccur2f2fonyw" path="res://Assets/Sprites/Background/deco_foreground_vines_p2_v1.png" id="6_trs77"]
+[ext_resource type="Texture2D" uid="uid://bv2qlalwmf8ub" path="res://Assets/Sprites/Background/parallax_foreground_top_v3.png" id="7_eirds"]
+[ext_resource type="Texture2D" uid="uid://cdn5gf2hfjbtk" path="res://Assets/Sprites/Background/deco_foreground_vines_p1_v1.png" id="8_l1bv7"]
+[ext_resource type="Theme" uid="uid://t8m20x0yt8ss" path="res://Assets/Others/button_style.tres" id="11_uothj"]
+[ext_resource type="StyleBox" uid="uid://b0fwtc0qthgyh" path="res://Scenes/UI/selector_settings.tres" id="13_h25m4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r3qk"]
+shader = ExtResource("5_g3w5m")
+shader_parameter/Wind_Strenght = 50.0
+
+[node name="Level_Selection" type="Control" node_paths=PackedStringArray("buttons")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 720)
+script = ExtResource("1_0jywo")
+buttons = [NodePath("HBoxContainer/Button"), NodePath("HBoxContainer/Button2"), NodePath("HBoxContainer/Button3"), NodePath("HBoxContainer/Button4"), NodePath("HBoxContainer/Button5"), NodePath("HBoxContainer2/Button6"), NodePath("HBoxContainer2/Button7"), NodePath("HBoxContainer2/Button8"), NodePath("HBoxContainer2/Button9"), NodePath("HBoxContainer3/Button10"), NodePath("HBoxContainer3/Button11"), NodePath("HBoxContainer3/Button12")]
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+texture_filter = 4
+layout_mode = 0
+offset_left = 928.0
+offset_top = 48.0
+offset_right = 1660.0
+offset_bottom = 231.0
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 150
+text = "level select"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1200.0
+offset_top = -488.0
+offset_right = 14180.0
+offset_bottom = 952.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_constants/separation = -800
+
+[node name="Button" type="TextureButton" parent="HBoxContainer" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../Back_Button")
+focus_neighbor_right = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/Button6")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/Button"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -59.9999
+offset_right = 69.0
+offset_bottom = 366.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "I"
+
+[node name="Button2" type="TextureButton" parent="HBoxContainer" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button")
+focus_neighbor_right = NodePath("../Button3")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/Button7")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/Button2"]
+z_index = 10
+layout_mode = 1
+offset_left = 1168.0
+offset_top = 660.0
+offset_right = 1404.0
+offset_bottom = 1025.0
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "II
+"
+
+[node name="Button3" type="TextureButton" parent="HBoxContainer" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button2")
+focus_neighbor_right = NodePath("../Button4")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/Button8")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/Button3"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -67.9999
+offset_right = 173.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "III
+"
+
+[node name="Button4" type="TextureButton" parent="HBoxContainer" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button3")
+focus_neighbor_right = NodePath("../Button5")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/Button9")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/Button4"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -63.9999
+offset_right = 132.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "IV
+"
+
+[node name="Button5" type="TextureButton" parent="HBoxContainer" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button4")
+focus_neighbor_right = NodePath("../../HBoxContainer2/Button6")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/Button9")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/Button5"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.9999
+offset_top = -55.9999
+offset_right = 71.0001
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "V"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+z_index = 9
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.487
+anchor_bottom = 0.593
+offset_left = 286.0
+offset_top = 521.0
+offset_right = 14419.3
+offset_bottom = 1107.08
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_constants/separation = -800
+
+[node name="Button6" type="TextureButton" parent="HBoxContainer2" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../../HBoxContainer/Button5")
+focus_neighbor_top = NodePath("../../HBoxContainer/Button")
+focus_neighbor_right = NodePath("../Button7")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Button10")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer2/Button6"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "VI
+"
+
+[node name="Button7" type="TextureButton" parent="HBoxContainer2" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button6")
+focus_neighbor_top = NodePath("../../HBoxContainer/Button2")
+focus_neighbor_right = NodePath("../Button8")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Button11")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer2/Button7"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 186.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "VII
+"
+
+[node name="Button8" type="TextureButton" parent="HBoxContainer2" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button7")
+focus_neighbor_top = NodePath("../../HBoxContainer/Button3")
+focus_neighbor_right = NodePath("../Button9")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Button11")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer2/Button8"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -56.0
+offset_right = 332.0
+offset_bottom = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "VIII"
+
+[node name="Button9" type="TextureButton" parent="HBoxContainer2" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button8")
+focus_neighbor_top = NodePath("../../HBoxContainer/Button5")
+focus_neighbor_right = NodePath("../../HBoxContainer3/Button10")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Button12")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer2/Button9"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -72.0
+offset_right = 140.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "IX"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 816.0
+offset_right = 6603.0
+offset_bottom = 2256.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/separation = -800
+
+[node name="Button10" type="TextureButton" parent="HBoxContainer3" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../../HBoxContainer2/Button9")
+focus_neighbor_top = NodePath("../../HBoxContainer2/Button6")
+focus_neighbor_right = NodePath("../Button11")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer3/Button10"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 70.0
+offset_bottom = 317.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "X"
+
+[node name="Button11" type="TextureButton" parent="HBoxContainer3" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button10")
+focus_neighbor_top = NodePath("../../HBoxContainer2/Button7")
+focus_neighbor_right = NodePath("../Button12")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer3/Button11"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.667
+offset_top = -46.6667
+offset_right = 137.333
+offset_bottom = 318.333
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "XI"
+
+[node name="Button12" type="TextureButton" parent="HBoxContainer3" node_paths=PackedStringArray("label")]
+texture_filter = 4
+layout_mode = 2
+focus_neighbor_left = NodePath("../Button11")
+focus_neighbor_top = NodePath("../../HBoxContainer2/Button9")
+focus_neighbor_right = NodePath("../../Back_Button")
+disabled = true
+texture_normal = ExtResource("2_8e36u")
+texture_disabled = ExtResource("4_b6al8")
+script = ExtResource("4_hsmw3")
+label = NodePath("Label")
+hoverd_color = Color(1, 0.501961, 0.960784, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer3/Button12"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.001
+offset_top = -46.6669
+offset_right = 196.999
+offset_bottom = 318.333
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 182)
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 300
+text = "XII
+"
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="parallax_foreground_relief" type="Sprite2D" parent="Background"]
+z_index = -1
+texture = ExtResource("5_rgat5")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Background"]
+z_index = -1
+texture = ExtResource("6_lmm7h")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_foreground_bottom" type="Sprite2D" parent="Background"]
+z_index = 1
+position = Vector2(0, 193)
+texture = ExtResource("4_calqo")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines2" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_3r3qk")
+texture = ExtResource("6_trs77")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_foreground_top" type="Sprite2D" parent="Background"]
+position = Vector2(0, -187)
+texture = ExtResource("7_eirds")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_vines1" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_3r3qk")
+position = Vector2(0, -98)
+texture = ExtResource("8_l1bv7")
+centered = false
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="Back_Button" type="Button" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 1168.0
+offset_top = 1216.0
+offset_right = 1399.0
+offset_bottom = 1290.0
+focus_neighbor_left = NodePath("../HBoxContainer/Button")
+focus_neighbor_top = NodePath("../HBoxContainer/Button")
+focus_neighbor_right = NodePath("../HBoxContainer3/Button12")
+theme = ExtResource("11_uothj")
+theme_override_fonts/font = ExtResource("3_umcju")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = ExtResource("13_h25m4")
+theme_override_styles/hover = ExtResource("13_h25m4")
+text = "Back"
+
+[connection signal="focus_entered" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer/Button4" to="HBoxContainer/Button4" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/Button4" to="HBoxContainer/Button4" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Button4" to="HBoxContainer/Button4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Button4" to="HBoxContainer/Button4" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer/Button5" to="HBoxContainer/Button5" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/Button5" to="HBoxContainer/Button5" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Button5" to="HBoxContainer/Button5" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Button5" to="." method="_on_button_5_mouse_exited"]
+[connection signal="mouse_exited" from="HBoxContainer/Button5" to="HBoxContainer/Button5" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer2/Button6" to="HBoxContainer2/Button6" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer2/Button6" to="HBoxContainer2/Button6" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer2/Button6" to="HBoxContainer2/Button6" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer2/Button6" to="HBoxContainer2/Button6" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer2/Button7" to="HBoxContainer2/Button7" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer2/Button7" to="HBoxContainer2/Button7" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer2/Button7" to="HBoxContainer2/Button7" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer2/Button7" to="HBoxContainer2/Button7" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer2/Button8" to="HBoxContainer2/Button8" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer2/Button8" to="HBoxContainer2/Button8" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer2/Button8" to="HBoxContainer2/Button8" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer2/Button8" to="HBoxContainer2/Button8" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer2/Button9" to="HBoxContainer2/Button9" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer2/Button9" to="HBoxContainer2/Button9" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer2/Button9" to="HBoxContainer2/Button9" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer2/Button9" to="HBoxContainer2/Button9" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer3/Button10" to="HBoxContainer3/Button10" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer3/Button10" to="HBoxContainer3/Button10" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer3/Button10" to="HBoxContainer3/Button10" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer3/Button10" to="HBoxContainer3/Button10" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer3/Button11" to="HBoxContainer3/Button11" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer3/Button11" to="HBoxContainer3/Button11" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer3/Button11" to="HBoxContainer3/Button11" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer3/Button11" to="HBoxContainer3/Button11" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="HBoxContainer3/Button12" to="HBoxContainer3/Button12" method="_on_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer3/Button12" to="HBoxContainer3/Button12" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer3/Button12" to="HBoxContainer3/Button12" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer3/Button12" to="HBoxContainer3/Button12" method="_on_mouse_exited"]
+[connection signal="pressed" from="Back_Button" to="." method="_on_back_button_pressed"]

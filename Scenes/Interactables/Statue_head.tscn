@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://bei20sbfdnwgt"]
+
+[ext_resource type="Script" uid="uid://be5qfcgubiqr0" path="res://Scripts/Interactables/statue_head.gd" id="1_ssrm5"]
+[ext_resource type="Texture2D" uid="uid://cqw0pada4v7qk" path="res://Assets/Sprites/Enviroment/asset_statue_lit-unlit_v2.png" id="2_vp8tt"]
+[ext_resource type="PackedScene" uid="uid://boh1lw3qav6ht" path="res://Scenes/Interactables/Statue_laser.tscn" id="3_by21c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7afwd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xekni"]
+atlas = ExtResource("2_vp8tt")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8kou"]
+atlas = ExtResource("2_vp8tt")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3li4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xekni")
+}],
+"loop": true,
+"name": &"asset_statue_lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8kou")
+}],
+"loop": true,
+"name": &"asset_statue_unlit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Statue_head" type="StaticBody2D"]
+script = ExtResource("1_ssrm5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7afwd")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_3li4c")
+animation = &"asset_statue_unlit"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Statue_laser" parent="." node_paths=PackedStringArray("emitter") instance=ExtResource("3_by21c")]
+position = Vector2(71, -4)
+emitter = NodePath("..")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

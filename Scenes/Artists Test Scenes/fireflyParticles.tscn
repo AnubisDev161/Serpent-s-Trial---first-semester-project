@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwh3aj20rmybu"]
+
+[ext_resource type="Texture2D" uid="uid://cnak4yjktln7i" path="res://Assets/Sprites/VFX/firefly_particle.png" id="1_h1hfl"]
+
+[sub_resource type="Gradient" id="Gradient_lmcrk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u7ce2"]
+gradient = SubResource("Gradient_lmcrk")
+
+[sub_resource type="Curve" id="Curve_ycdyx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.201735, 1), 0.0, 0.0, 0, 0, Vector2(0.796095, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_sru6d"]
+curve = SubResource("Curve_ycdyx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5kr5"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1000.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_sru6d")
+color = Color(1, 1, 1, 0.572549)
+color_ramp = SubResource("GradientTexture1D_u7ce2")
+
+[node name="fireflyParticles" type="GPUParticles2D"]
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_w5kr5")
+texture = ExtResource("1_h1hfl")
+speed_scale = 0.25

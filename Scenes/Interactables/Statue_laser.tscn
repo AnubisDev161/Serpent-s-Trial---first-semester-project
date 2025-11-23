@@ -1,0 +1,129 @@
+[gd_scene load_steps=15 format=3 uid="uid://boh1lw3qav6ht"]
+
+[ext_resource type="Script" uid="uid://c5865nb27x8qf" path="res://Scripts/Interactables/statue_laser.gd" id="1_l3ysn"]
+[ext_resource type="Texture2D" uid="uid://btuluw437t653" path="res://Assets/Sprites/VFX/enemy_projectile_particle.png" id="2_it5n8"]
+[ext_resource type="Shader" uid="uid://dxapo24jqnrph" path="res://Scripts/Shader/thunder_vfx.tres" id="2_xvg0u"]
+[ext_resource type="Texture2D" uid="uid://d16m436cbgkfg" path="res://Assets/Sprites/VFX/VFX_thunder1.jpg" id="3_w6b4v"]
+
+[sub_resource type="Curve" id="Curve_nligd"]
+_data = [Vector2(0, 6.15385), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.571429), 0.0, 0.0, 0, 0, Vector2(1, 0.043956), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_keryb"]
+_data = [Vector2(0.0933333, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_8y78h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_bcy4b"]
+curve_x = SubResource("Curve_nligd")
+curve_y = SubResource("Curve_keryb")
+curve_z = SubResource("Curve_8y78h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pk37a"]
+lifetime_randomness = 0.13
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveXYZTexture_bcy4b")
+
+[sub_resource type="Animation" id="Animation_cgdn4"]
+resource_name = "Laser_shooting"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.938635, 0.872352, 0.398896, 1), Color(0.858824, 0.784314, 0.227451, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wk2fc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.32549, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smigv"]
+_data = {
+&"Laser_shooting": SubResource("Animation_cgdn4"),
+&"RESET": SubResource("Animation_wk2fc")
+}
+
+[sub_resource type="Environment" id="Environment_asib0"]
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kfjs"]
+shader = ExtResource("2_xvg0u")
+shader_parameter/vanishing_value = 0.0
+shader_parameter/speed = Vector2(-1.25, 0)
+shader_parameter/basic_texture = ExtResource("3_w6b4v")
+
+[node name="Statue_laser" type="Node2D"]
+script = ExtResource("1_l3ysn")
+
+[node name="Laser" type="RayCast2D" parent="."]
+target_position = Vector2(300, 0)
+
+[node name="End" type="CPUParticles2D" parent="."]
+position = Vector2(443, 0)
+emitting = false
+lifetime = 0.4
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_max = 252.53
+scale_amount_min = 11.75
+scale_amount_max = 11.75
+color = Color(0.726505, 0.658962, 0.097098, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="End"]
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_pk37a")
+texture = ExtResource("2_it5n8")
+lifetime = 0.15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_smigv")
+}
+autoplay = "Laser_shooting"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_asib0")
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_5kfjs")
+points = PackedVector2Array(0, 0, 444.684, -7.62939e-06)
+width = 50.0
+default_color = Color(1, 0.32549, 1, 1)
+texture_mode = 2
+round_precision = 1

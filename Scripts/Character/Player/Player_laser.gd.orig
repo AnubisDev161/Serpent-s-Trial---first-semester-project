@@ -1,0 +1,257 @@
+extends Node2D
+
+var lasers = []
+var spark_emitters = []
+var max_cast_to = Vector2.ZERO
+var reflectors = []
+var active = true
+@onready var laser: RayCast2D = $Laser
+@onready var line: Line2D = $Line2D
+@export var current_length: int
+@export var max_length = 550
+@export var start_length = 50
+@onready var end: CPUParticles2D =$End_particles
+@onready var spark_particles: GPUParticles2D = $Spark_particles
+@onready var casting_particles: GPUParticles2D = $Casting_particles
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var laser_aime_color: Color 
+@export var laser_detected_color: Color #color that indicates that an enemy is hit at it's front in the pre aime state
+@export var laser_hit_color: Color
+var current_direction = 1
+@export var mouse_speed = 1000
+@export var mouse_aime_distance = 300
+@export var emitter: Node2D
+var target = null
+var shooting = false
+@export var acceleration = 1
+signal shot_performed
+
+func enable_raycast(enable):
+	if enable == true:
+		active = true
+		visible = true
+		laser.enabled = true
+		animation_player.play("Idle_laser")
+	else:
+		active = false
+		visible = false
+		laser.enabled = false
+		end.emitting = false
+
+func _ready() -> void:
+	enable_raycast(true)
+	if active == false:
+		return
+	laser.add_exception(emitter)
+	lasers.append(laser)
+	spark_emitters.append(spark_particles)
+	laser.target_position = max_cast_to
+	line.top_level = true
+	
+
+func _process(delta: float) -> void:
+	if active == false:
+		return
+	
+	
+	update_first_raycast(delta)
+	
+	target = null
+	
+	var index = -1
+	for raycast in lasers:
+		index += 1
+		var raycast_collsion = raycast.get_collision_point()
+		raycast.target_position = max_cast_to
+		
+		if raycast.is_colliding():
+			line.add_point(raycast_collsion)
+			var collider = raycast.get_collider()
+			end.global_rotation = (raycast.get_collision_normal().angle())
+			
+			if collider.has_method("_reflector_detected"):
+				collision_with_reflector(index, raycast,collider, raycast_collsion)
+			
+			else: # if not colliding with reflector
+				collision_with_other_objects(index, raycast, raycast_collsion, collider)
+			
+		else: # else if not colliding at all
+			no_collision(index, raycast)
+	update_spark_particles()
+func _create_bounced_raycast():
+	var raycast = laser.duplicate()
+	raycast.enabled = true
+	raycast.add_exception(emitter)
+	add_child(raycast)
+	lasers.append(raycast)
+	var new_spark_particles = spark_particles.duplicate() 
+	spark_emitters.append(new_spark_particles)
+	add_child(new_spark_particles)
+
+func remove_bounced_raycast(laser_array_index):
+	for i in range(lasers.size() - 1, laser_array_index, -1):
+		lasers[i].queue_free()
+		spark_emitters[i].queue_free()
+	lasers.resize(laser_array_index +1)
+	spark_emitters.resize(laser_array_index +1)
+	reflectors.resize(laser_array_index )
+	print("reflector removed")
+
+func no_collision(index, raycast):
+	update_color()
+	line.add_point(raycast.global_position + max_cast_to)
+	if index < lasers.size() -1: # checks whether there are more elements in the lasers array with a higher index than the ray which lost connection to a reflector
+		remove_bounced_raycast(index) # removes the rays with a higher index in the lasers array
+	if index == 0:
+		raycast.target_position = max_cast_to
+		end.global_position = global_position + max_cast_to
+	else:
+		end.global_position = raycast.global_position + max_cast_to # sets the global position of the end particles to the tip of the raycast
+
+func collision_with_other_objects(index, raycast, raycast_collsion, collider):
+	#?
+	# checks whether there are more elements in the lasers array with a higher index than the ray which lost connection to a reflector
+	if index < lasers.size() -1: 
+		remove_bounced_raycast(index) # removes the rays with a higher index in the lasers array
+	
+	if index == lasers.size() -1: # sets the end particles to the collsiion position of the last racast
+		
+		end.global_position = raycast_collsion
+	#This is where you should check for a collision with player/enemy
+	update_color()
+	if collider.has_method("is_looking_at_player"):
+		target = collider
+		if shooting == true:
+			var x = 45
+		if collider.is_looking_at_player(raycast_collsion) == true && collider.is_petrified == false:
+			
+			line.default_color = laser_detected_color
+			if shooting == true:
+				collider.petrify(raycast_collsion)
+
+func collision_with_reflector(index, raycast, collider, raycast_collsion):
+	if reflectors == []:# if the the raycast first intersects with a reflector, it will create the first bounced raycast
+		reflectors.append(collider)
+		_create_bounced_raycast()
+		print("raycast added")
+	else:
+		for i in reflectors.size() :# checks whether the ray has intersected with a reflector that hasn't been hit bofore
+			if reflectors[i] == collider:
+				break
+			elif i == reflectors.size() -1:
+				reflectors.append(collider)
+				_create_bounced_raycast()
+				print("collider added")
+	
+	max_cast_to = max_cast_to.bounce(raycast.get_collision_normal())
+	
+	if max_cast_to.length() > max_length: # this checks whether the distance between the origin kof the raycast and the marker2D is greater than the max_length of the laser
+		var length_above_max_length = max_cast_to.length() - max_length # if this is the case, the raycast will be shorten to it's maximum length
+		max_cast_to = max_cast_to - max_cast_to.normalized() * length_above_max_length
+	
+	if index < lasers.size() -1:
+		lasers[index +1].enabled = true
+		lasers[index +1].global_position = raycast_collsion + max_cast_to.normalized()
+
+#?
+# Is called in the _process func
+func update_first_raycast(_delta):
+	
+	line.clear_points()
+	line.add_point(global_position)
+	
+	if current_length > max_length:
+		current_length = max_length
+	var target_direction = Vector2.ZERO
+	if get_controller_input(_delta):
+		target_direction = get_controller_input(_delta)
+	target_direction =  (get_global_mouse_position() - global_position).normalized() 
+	max_cast_to = target_direction * current_length
+	
+
+func shoot(value):
+	if value == true:
+		shooting = true
+		if animation_player.current_animation != "Laser_shoot":
+			end.emitting = true
+			animation_player.play("Laser_shoot")
+			#beam_particles.emitting = true
+	else:
+		shooting = false
+		animation_player.play("Idle_laser")
+		#beam_particles.emitting = false
+
+func shoot_time_over():
+	shoot(false)
+	#enable_raycast(false)
+	emit_signal("shot_performed")
+
+func _on_player_shoot() -> void:
+	shoot(true)
+	
+func update_color():
+	if shooting == true:
+		line.default_color = laser_hit_color
+	else:
+		line.default_color = laser_aime_color
+
+func get_controller_input (_delta):
+	var joy_direction = Input.get_vector("aim_x_left","aim_x_right","aim_y_up","aim_y_down").normalized()
+
+	update_viewport_mouse_position(_delta, joy_direction)
+
+func get_mouse_input () -> Vector2:
+	var mouse_direction = (get_global_mouse_position() - global_position).normalized() 
+	return mouse_direction
+
+func change_direction(flip_dir):
+	if flip_dir != current_direction:
+		current_direction = flip_dir
+
+func update_viewport_mouse_position(delta, joy_direction):
+	var viewport_mouse_pos = get_viewport().get_mouse_position()
+	var viewport_size = get_viewport().get_visible_rect().size
+	var tolerance = 5  # Allow a small tolerance for floating-point precision
+	get_viewport().warp_mouse(viewport_mouse_pos + joy_direction * mouse_speed * delta)
+	viewport_mouse_pos = get_viewport().get_mouse_position()
+	#print("viewport_mouse_pos", viewport_mouse_pos)
+	#print("viewport_size", viewport_size)
+	
+	var player_position = emitter.get_global_transform_with_canvas().get_origin()
+	
+	var direction =  viewport_mouse_pos -player_position
+	
+	if direction.length() >= mouse_aime_distance + tolerance || direction.length() < mouse_aime_distance - tolerance:
+		direction = direction.normalized() * mouse_aime_distance
+		var new_mouse_position = player_position + direction
+		# Warp the mouse to the new position
+		get_viewport().warp_mouse(new_mouse_position)
+	#var viewport_mouse_pos = get_viewport().get_mouse_position()
+	#var viewport_size = get_viewport().get_visible_rect().size
+	#var tolerance = 5  # Allow a small tolerance for floating-point precision
+	#if current_direction >= 0:
+		## 9 *5
+		#var target_x = viewport_size.x /  9 *5#24 *12.5
+		#if abs(viewport_mouse_pos.x - target_x) > tolerance:
+			## Convert target position to screen coordinates
+			#
+			#var screen_target_pos = get_viewport().get_screen_transform() * Vector2(target_x , viewport_mouse_pos.y)
+			#Input.warp_mouse(screen_target_pos)
+	#else:# 9 *4
+		#var target_x = viewport_size.x /9 *4#24 *11.5
+		#if abs(viewport_mouse_pos.x - target_x) > tolerance:
+			## Convert target position to screen coordinates
+			#var screen_target_pos = get_viewport().get_screen_transform() * Vector2(target_x , viewport_mouse_pos.y)
+			#Input.warp_mouse(screen_target_pos)
+
+func update_spark_particles():
+	
+	casting_particles.global_rotation =  max_cast_to.angle()
+	spark_particles.global_rotation = max_cast_to.angle()
+	if laser.is_colliding():
+		spark_particles.position = (to_local( line.get_point_position(1)) -to_local( line.get_point_position(0))) * 0.5
+		spark_particles.process_material.emission_box_extents.x = (to_local( line.get_point_position(1)) -to_local( line.get_point_position(0))).length() *0.5
+	else:
+		spark_particles.position = laser.target_position * 0.5
+		spark_particles.process_material.emission_box_extents.x =  laser.target_position.length() * 0.5
+	

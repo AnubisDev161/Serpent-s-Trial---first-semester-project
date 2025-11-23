@@ -1,0 +1,224 @@
+[gd_scene load_steps=17 format=3 uid="uid://o4yv8r3td8tg"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/menu.gd" id="1_5dq0k"]
+[ext_resource type="Texture2D" uid="uid://df8qyfnpeb8pw" path="res://Assets/Sprites/Background/B1.1 darker.png" id="2_g4mln"]
+[ext_resource type="FontFile" uid="uid://dy38kvvl78usv" path="res://Assets/Sprites/UI/Font/CaesarDressing-Regular.ttf" id="2_q7td0"]
+<<<<<<< working copy
+[ext_resource type="Texture2D" uid="uid://bcpxhl82x7h4e" path="res://Assets/Sprites/Background/parallax_background_pillars.png" id="3_787ot"]
+=======
+[ext_resource type="Texture2D" uid="uid://e1c8ul7kow1m" path="res://Assets/Sprites/Background/parallax_background_pillars1_v2.4.png" id="3_5111v"]
+>>>>>>> merge rev
+[ext_resource type="Script" path="res://Scripts/UI/Menus/logo_text_anim.gd" id="4_mfrbj"]
+<<<<<<< working copy
+[ext_resource type="Texture2D" uid="uid://b158ljor8yq34" path="res://Assets/Sprites/Background/parallax_foreground_bottom_v4.png" id="4_wijh7"]
+[ext_resource type="Texture2D" uid="uid://b00510uy7cvla" path="res://Assets/Sprites/Background/parallax_foreground_top_v2.png" id="5_yj3ef"]
+=======
+[ext_resource type="Texture2D" uid="uid://cn8mvyv1adbc6" path="res://Assets/Sprites/Background/parallax_foreground_bottom_v5.png" id="4_ukg78"]
+[ext_resource type="Texture2D" uid="uid://mbafwh5cxgd6" path="res://Assets/Sprites/Background/deco_foreground_vines_p2_v1.png" id="6_bnhy6"]
+>>>>>>> merge rev
+[ext_resource type="Shader" uid="uid://sip0qjm0fnf7" path="res://Scenes/Artists Test Scenes/Parallax.tres" id="6_duykt"]
+<<<<<<< working copy
+[ext_resource type="Texture2D" uid="uid://c7i5f34nxwmlx" path="res://Assets/Sprites/Background/deco_foreground_foliage_v1.png" id="7_knnu6"]
+[ext_resource type="Texture2D" uid="uid://co2puwcbr0ep7" path="res://Assets/Sprites/UI/main_menu/UI_title_glow.png" id="9_0ptik"]
+[ext_resource type="Texture2D" uid="uid://div1okd11wxm6" path="res://Assets/Sprites/UI/main_menu/UI_snake_borderV2.png" id="10_8q242"]
+=======
+[ext_resource type="Texture2D" uid="uid://cyecisqklwyxi" path="res://Assets/Sprites/Background/parallax_foreground_top_v3.png" id="7_gbl5g"]
+[ext_resource type="Texture2D" uid="uid://bgk4kdhkeibuw" path="res://Assets/Sprites/Background/deco_foreground_vines_p1_v1.png" id="8_2sxa2"]
+[ext_resource type="Texture2D" uid="uid://dpogqcbx85u15" path="res://Assets/Sprites/UI/main_menu/UI_title_glow.png" id="9_0ptik"]
+[ext_resource type="Texture2D" uid="uid://1fb0aakmeja7" path="res://Assets/Sprites/UI/main_menu/UI_snake_borderV2.png" id="10_8q242"]
+>>>>>>> merge rev
+[ext_resource type="PackedScene" uid="uid://dwh3aj20rmybu" path="res://Scenes/Artists Test Scenes/fireflyParticles.tscn" id="10_d48lx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhxce"]
+shader = ExtResource("6_duykt")
+shader_parameter/Wind_Strenght = 11.416
+
+[sub_resource type="Animation" id="Animation_cejpd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(155, 345)]
+}
+
+[sub_resource type="Animation" id="Animation_gx2w2"]
+resource_name = "text_float"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.03333, 6.03333, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(155, 360), Vector2(155, 345), Vector2(155, 330), Vector2(155, 345), Vector2(155, 360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuo3j"]
+_data = {
+"RESET": SubResource("Animation_cejpd"),
+"text_float": SubResource("Animation_gx2w2")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5dq0k")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="parallax_foreground_pillars" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 720)
+texture = ExtResource("2_g4mln")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars2" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 720)
+texture = ExtResource("3_787ot")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars3" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 1071)
+texture = ExtResource("4_wijh7")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars4" type="Sprite2D" parent="Background"]
+position = Vector2(1280, 595)
+texture = ExtResource("5_yj3ef")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="parallax_foreground_pillars5" type="Sprite2D" parent="Background"]
+z_index = 2
+material = SubResource("ShaderMaterial_yhxce")
+position = Vector2(529, 207)
+texture = ExtResource("7_knnu6")
+region_rect = Rect2(0, 0, 7680, 1440)
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 207.0
+offset_top = 42.0
+offset_right = 507.0
+offset_bottom = 444.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="Resume_Button" type="Button" parent="Buttons"]
+visible = false
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 45
+text = "Resume
+"
+
+[node name="Play_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 45
+text = "Start
+"
+
+[node name="Credits_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 45
+text = "Credits
+"
+
+[node name="Settings_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 45
+text = "Settings
+"
+
+[node name="Quit_Button" type="Button" parent="Buttons"]
+z_index = 10
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 45
+text = "Quit
+"
+
+[node name="Logo_Text" type="VBoxContainer" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.5
+anchor_right = 0.07
+anchor_bottom = 0.5
+offset_left = 1.40001
+offset_top = -375.0
+offset_right = 634.8
+offset_bottom = -252.0
+grow_vertical = 2
+
+[node name="Logo_Text_Lable" type="Label" parent="Logo_Text"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.384314)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 9
+theme_override_fonts/font = ExtResource("2_q7td0")
+theme_override_font_sizes/font_size = 100
+text = "SERPENTS TRIAL"
+vertical_alignment = 1
+
+[node name="title" type="Sprite2D" parent="Logo_Text"]
+position = Vector2(195, 155)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_0ptik")
+
+[node name="snake_border" type="Sprite2D" parent="Logo_Text"]
+position = Vector2(195, 155)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_8q242")
+
+[node name="Logo_Text_Anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Logo_Text")
+libraries = {
+"": SubResource("AnimationLibrary_tuo3j")
+}
+script = ExtResource("4_mfrbj")
+
+[node name="fireflyParticles" parent="." instance=ExtResource("10_d48lx")]
+position = Vector2(1247, 705)
+scale = Vector2(1.34789, 1.34789)
+
+[connection signal="pressed" from="Buttons/Resume_Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Buttons/Play_Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Buttons/Credits_Button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/Settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Buttons/Quit_Button" to="." method="_on_quit_button_pressed"]

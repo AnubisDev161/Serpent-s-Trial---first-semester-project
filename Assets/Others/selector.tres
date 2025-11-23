@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://reb2767wns1u"]
+
+[ext_resource type="Texture2D" uid="uid://dteg17mac68vh" path="res://Assets/Sprites/UI/main_menu/UI_selector_polished.png" id="1_pb7ue"]
+
+[resource]
+texture = ExtResource("1_pb7ue")
+expand_margin_left = 20.0
+expand_margin_top = 10.0
+expand_margin_right = 20.0
+expand_margin_bottom = 10.0

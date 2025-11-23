@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm7ief452sw6x"]
+
+[ext_resource type="PackedScene" uid="uid://bljsvpfi28jej" path="res://Scenes/Interactables/reflector.tscn" id="1_k8w2d"]
+[ext_resource type="PackedScene" uid="uid://ev54brnvpq8o" path="res://Scenes/Characters/Player_laser.tscn" id="2_ilshw"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(342, 514)
+
+[node name="Reflector" parent="." instance=ExtResource("1_k8w2d")]
+position = Vector2(398, 9)
+rotation = 0.785398
+
+[node name="Reflector2" parent="." instance=ExtResource("1_k8w2d")]
+position = Vector2(221, -279)
+
+[node name="Reflector3" parent="." instance=ExtResource("1_k8w2d")]
+position = Vector2(393, -315)
+rotation = -1.0472
+
+[node name="Reflector4" parent="." instance=ExtResource("1_k8w2d")]
+position = Vector2(643, -137)
+rotation = 0.785398
+
+[node name="Player_laser" parent="." instance=ExtResource("2_ilshw")]
+position = Vector2(-153, -294)
